@@ -1,0 +1,32 @@
+{
+  "id": "cancer-dataset-datasheets-citation-lint-032",
+  "title": "Citation-coverage lint tool (machine-enforced provenance-on-every-assertion)",
+  "project": "cancer-dataset-datasheets",
+  "type": "code",
+  "lane": "donated",
+  "priority": "high",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "software"
+  ],
+  "riskTier": "low",
+  "urgent": false,
+  "deliverable": "pr",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "PLAN.md v0.2 adds a machine-enforced citation-coverage lint as an M0 exit criterion: every assertion sentence in a datasheet must carry a citation anchor, and the lint feeds the documentation-completeness score. The 90/100 bar is not reviewer-judged on this dimension -- the lint enforces it mechanically. The lint runs in CI and fails if any assertion lacks a provenance citation. This is distinct from provenance-008 (which is a snapshot-capture tool for license text and release metadata). Binding cancer guardrails apply: open-access / aggregate / de-identified data only; no medical advice. Code is MIT-licensed and must pass pnpm build && pnpm test && pnpm lint.",
+  "objective": "Build a citation-coverage lint tool that parses a datasheet, detects any assertion sentence lacking a citation anchor, fails CI on uncited assertions, and outputs a per-section coverage score feeding the documentation-completeness metric.",
+  "acceptanceCriteria": [
+    "Lint parses a datasheet document and detects any assertion sentence lacking a citation anchor (per the citation-anchor convention defined in the canonical metadata model).",
+    "Fails CI with a named list of uncited assertions (file, section, line) when citation coverage is not 100%.",
+    "Outputs a per-section citation-coverage score that feeds the documentation-completeness metric; does not replace reviewer judgment on other completeness dimensions.",
+    "Committed golden fixtures include a failing datasheet (at least one uncited assertion) and a passing datasheet (all assertions cited), exercised in CI; no real inspected data committed.",
+    "Code MIT-licensed; pnpm build && pnpm test && pnpm lint green; DCO signed-off; no credentials or secrets committed."
+  ],
+  "output": "/tools/citation-lint/",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "MIT"
+}

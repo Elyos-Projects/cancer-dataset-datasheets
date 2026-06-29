@@ -1,0 +1,32 @@
+{
+  "id": "cancer-dataset-datasheets-croissant-version-036",
+  "title": "Croissant version decision: 1.0 pinned vs 1.1 DUO/PROV-O adoption (M0 exit criterion)",
+  "project": "cancer-dataset-datasheets",
+  "type": "design-spec",
+  "lane": "donated",
+  "priority": "medium",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "low",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "small",
+  "status": "open",
+  "context": "PLAN.md v0.2 retargets the Croissant spec to v1.1 (which adds DUO/PROV-O permission+provenance layers and MCP, directly encoding access-tier/consent as ontology terms) but requires a recorded decision: either adopt 1.1 now, or pin 1.0 transitionally with a scheduled bump. This version decision is an M0 exit criterion and is separate from croissant-007 (which builds the generator targeting the decided version). Without a recorded decision, the generator, validators, and golden fixtures cannot be pinned to a stable spec. Dependencies: croissant-007 (the generator task must wait on this decision). Binding cancer guardrails apply.",
+  "objective": "Record the Croissant version decision (1.0 pinned transitionally with scheduled bump, or 1.1 DUO/PROV-O adopted immediately), documenting the rationale, the maturity/compatibility assessment, and the scheduled bump date if 1.0 is held.",
+  "acceptanceCriteria": [
+    "Decision document committed to /docs/croissant-version-decision.md recording which version is adopted (1.0 or 1.1) with the rationale: maturity, DUO/PROV-O readiness for access-tier encoding, tool ecosystem compatibility.",
+    "If 1.0 is held transitionally: a scheduled bump milestone is named (no later than M2), and specVersions records the pinned version with the bump date.",
+    "If 1.1 is adopted: the DUO and PROV-O layers to be used for access-tier/consent encoding are identified and listed; any known tooling gaps noted.",
+    "specVersions entry updated with the decided version and effective date.",
+    "croissant-007 acceptance criteria are cross-referenced to confirm they will target the decided version."
+  ],
+  "output": "/docs/croissant-version-decision.md",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "cancer-dataset-datasheets-sibling-contract-033",
+  "title": "Reuse contract with open-data-datasheets and ewing-open-data-catalog (M0 exit criterion)",
+  "project": "cancer-dataset-datasheets",
+  "type": "design-spec",
+  "lane": "donated",
+  "priority": "medium",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "low",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "small",
+  "status": "open",
+  "context": "PLAN.md v0.2 establishes an explicit reuse contract as an M0 exit criterion: this project consumes (never re-implements) the canonical model, Croissant validator, and bounded inspection protocol from the sibling project open-data-datasheets. ewing-open-data-catalog consumes and links the datasheets produced here. Without a committed reuse contract, the three sibling projects risk triplication-drift where separate validators diverge -- identified as a medium/medium risk in the updated risk table. This task is not about tracking external reuse events (reuse-021); it is about the binding internal dependency/ownership contract between the three Elyos sibling projects. Binding cancer guardrails apply.",
+  "objective": "Document the binding reuse contract between cancer-dataset-datasheets, open-data-datasheets (shared toolkit owner), and ewing-open-data-catalog (consumer), specifying which components are shared dependencies vs. cancer-specific extensions, who owns the shared core, and the no-parallel-reimplementation rule.",
+  "acceptanceCriteria": [
+    "Contract document committed to /docs/sibling-reuse-contract.md specifying which components (canonical model, Croissant validator, inspection protocol) are consumed from open-data-datasheets as a dependency and not reimplemented here.",
+    "Cancer-specific extensions (genomic-privacy gate, identifiability scanner, cancer-license matrix, shareAlike flag, upstreamVersionDoi) listed as this project's supersets not re-implemented in sibling projects.",
+    "ewing-open-data-catalog's role as a downstream consumer (links datasheets produced here; does not re-document datasets already covered here) is explicitly recorded.",
+    "No-parallel-reimplementation rule stated: any change to shared toolkit components routes through open-data-datasheets, never as a cancer-dataset-datasheets fork.",
+    "Contract cross-referenced from PLAN.md dependencies section and from canonical-metadata-model.md."
+  ],
+  "output": "/docs/sibling-reuse-contract.md",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

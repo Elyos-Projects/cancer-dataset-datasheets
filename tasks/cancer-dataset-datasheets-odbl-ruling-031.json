@@ -1,0 +1,32 @@
+{
+  "id": "cancer-dataset-datasheets-odbl-ruling-031",
+  "title": "ODbL share-alike / CC-BY compatibility ruling for cBioPortal (blocking)",
+  "project": "cancer-dataset-datasheets",
+  "type": "research",
+  "lane": "donated",
+  "priority": "high",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "data-governance",
+    "bioinformatics"
+  ],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "small",
+  "status": "open",
+  "context": "PLAN.md v0.2 establishes that cBioPortal's default license is ODC-ODbL (share-alike), not CC-BY. CC-BY-4.0-licensed documentation derived from an ODbL share-alike database may create a license-compatibility conflict. Until a credentialed License + Genomic-Privacy reviewer provides a standing ruling, ALL cBioPortal sources are FLAG status and no cBioPortal datasheet may PASS the gate. This ruling is an M0 exit criterion and a hard blocker on every cBioPortal task. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE. Depends on license-matrix-005 and reviewer-001.",
+  "objective": "Obtain a written reviewer ruling on whether CC-BY-4.0-licensed documentation derived from an ODbL share-alike source (cBioPortal) creates a license conflict, and record the standing rule and any required mitigation in the gate and policy artifacts.",
+  "acceptanceCriteria": [
+    "License + Genomic-Privacy reviewer provides a written ruling with cited legal analysis on ODbL share-alike vs. CC-BY-4.0 documentation compatibility.",
+    "Ruling committed to /docs/odbl-share-alike-ruling.md with the date, reviewer identity, and cited sources (primary legal sources or prior art, not self-assertion).",
+    "gate-004 checklist and policy-006 updated to reference the ruling; any required mitigation (e.g. relicensing documentation under ODbL-compatible terms or recording a specific study exemption) is stated.",
+    "license-matrix-005 updated to record cBioPortal as ODC-ODbL default with shareAlike:true and the per-study verification requirement.",
+    "No cBioPortal datasheet may PASS the gate until this ruling is committed; ruling document explicitly states the effective date and scope."
+  ],
+  "output": "/docs/odbl-share-alike-ruling.md",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

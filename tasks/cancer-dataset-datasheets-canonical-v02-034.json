@@ -1,0 +1,32 @@
+{
+  "id": "cancer-dataset-datasheets-canonical-v02-034",
+  "title": "Canonical metadata model v0.2 update (shareAlike, upstreamVersionDoi, OncoTree-primary, before-score baseline)",
+  "project": "cancer-dataset-datasheets",
+  "type": "writing",
+  "lane": "donated",
+  "priority": "high",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "low",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "small",
+  "status": "open",
+  "context": "PLAN.md v0.2 introduces four correctness fixes to the canonical metadata model not yet reflected in template-003: (1) a new license.shareAlike flag required for ODbL/cBioPortal handling; (2) a new required provenance.upstreamVersionDoi field capturing DepMap per-quarter Figshare DOIs and GDC release-ids; (3) OncoTree fixed as the primary disease vocabulary with NCIt/DO as secondary crosswalks only; (4) the documentation-completeness before-score redefined against source portal existing structured metadata (GDC fields, GEO MIAME record), not against zero. These four changes affect the completeness score, gate artifact, Croissant output, and citation-lint baseline. Depends on template-003. Binding cancer guardrails apply.",
+  "objective": "Update the canonical metadata model and datasheet template to incorporate the four v0.2 schema correctness fixes: license.shareAlike, provenance.upstreamVersionDoi, OncoTree as primary ontology, and before-score baseline against source portal existing metadata.",
+  "acceptanceCriteria": [
+    "license.shareAlike (boolean, required for cBioPortal / ODbL sources) added to the canonical model with definition, effect on the gate (FLAG until odbl-ruling-031 committed), and example values.",
+    "provenance.upstreamVersionDoi (string, required, completeness-scored) added to the canonical model with per-source examples: DepMap quarterly Figshare DOI (e.g. 24Q4), GDC data release identifier.",
+    "OncoTree specified as the primary disease vocabulary in the canonical model and TEMPLATE.md; NCIt and Disease Ontology recorded as secondary crosswalk sources only.",
+    "before-score baseline redefined in the canonical model: measured against source portal existing structured metadata (GDC structured fields, GEO MIAME record), not against zero; the before/after pair must be stored in the dataset gate/provenance artifact.",
+    "canonical-metadata-model.md version bumped to v0.2 with a dated changelog entry listing all four changes; TEMPLATE.md updated to reflect all four changes."
+  ],
+  "output": "/datasheets/TEMPLATE.md (updated) and /docs/canonical-metadata-model.md (v0.2, changelog appended)",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "cancer-dataset-datasheets-cbio-harmonize-035",
+  "title": "cBioPortal clinical-field harmonization to OncoTree / NCIt (M2 exit criterion)",
+  "project": "cancer-dataset-datasheets",
+  "type": "research",
+  "lane": "donated",
+  "priority": "medium",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "PLAN.md v0.2 adds cBioPortal clinical-field harmonization to OncoTree/NCIt as an explicit M2 exit criterion. cBioPortal's clinical metadata is documented as extremely heterogeneous: different studies use arbitrary terms for identical entities (diagnosis, histology, stage, treatment, etc.), making cross-study comparison impossible without a harmonization layer. This task produces a cited harmonization mapping for the clinical fields found in at least one documented cBioPortal study. Works only from study-level summary or schema metadata available in open cBioPortal study files -- never from controlled-access clinical data. Depends on odbl-ruling-031 (ODbL ruling must be committed before any cBioPortal source can proceed) and cbio-018. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; no medical advice; provenance on every assertion.",
+  "objective": "Produce a clinical-field harmonization mapping for at least one documented cBioPortal study, mapping heterogeneous study clinical field labels to OncoTree primary terms (NCIt/DO secondary codes), committed with cited provenance per term resolution.",
+  "acceptanceCriteria": [
+    "Harmonization covers at least one documented cBioPortal study's clinical field labels (those present in the produced cbio-018 datasheet); each field is mapped to its OncoTree primary term and NCIt/DO secondary code, or flagged as unmappable with stated rationale and a proposed future resolution.",
+    "Mapping committed to /docs/cbio-clinical-harmonization.md with cited provenance for each term resolution (OncoTree or NCIt source URL + term identifier; no unmapped field left silent).",
+    "At least one round-trip demonstrated: the produced datasheet's dataset-characteristics section uses harmonized OncoTree terms rather than the study-specific arbitrary strings.",
+    "Works only from study-level summary or schema metadata available in open cBioPortal study files; no controlled-access clinical data, no individual-level records.",
+    "Depends on odbl-ruling-031 being committed before this task may proceed (ODbL ruling is a hard blocker on all cBioPortal tasks)."
+  ],
+  "output": "/docs/cbio-clinical-harmonization.md",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}
