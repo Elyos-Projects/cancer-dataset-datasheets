@@ -1,6 +1,6 @@
 # PLAN — cancer-dataset-datasheets
 
-> Status: Draft · Version: 0.1.0 · Last updated: 2026-06-28 · Owner: TBD (maintainer) · Lane: donated · Risk tier: medium (patient-facing education, if attempted, is high)
+> Status: Draft · Version: 0.2.0 · Last updated: 2026-06-29 · Owner: TBD (maintainer) · Lane: donated · Risk tier: medium (patient-facing education, if attempted, is high)
 
 > **BINDING CANCER GUARDRAILS (read first — these override any convenience or throughput goal).**
 > This project documents **only open-access / aggregate / de-identified** cancer data. **Controlled-access
@@ -114,13 +114,25 @@ only *accepted, used, and safe* documentation counts.
 | Datasheets passing technical + license/privacy review with no rework needed on safety items | n/a | ≥ 90% first-pass on safety items; **0** safety items deferred |
 | Patient-facing explainers shipped **without** oncologist + advocate sign-off | n/a | **0** (hard gate) |
 
+**Targets are explicitly conditioned on the blocking reviewer being seated.** The "6 accepted in 6 months"
+target assumes the **License + Genomic-Privacy reviewer is named** (the hard blocker — until then no dataset
+passes the gate and all tasks stay `verifiedNeed: false`) and at least one acceptance channel exists. With
+no confirmed steward, the **self-serve Zenodo metadata DOI** is the only channel that makes any early
+acceptance achievable; the cumulative targets are aspirational until both the reviewer and a steward are
+secured, and are read as conditional rather than committed.
+
 **Quantifying "improves reuse" (so DoDs are verifiable).** Each datasheet gets a
 **documentation-completeness score (0–100)**: fraction of canonical-metadata fields populated *and
-source-verified* — data-dictionary coverage of all documented fields, provenance complete, license
-recorded with `permitsDerivatives` + cited clause, access-tier + identifiability assessment complete,
-Datasheet sections answered, valid Croissant emitted, **every assertion carrying a provenance citation**.
-Target: every delivered datasheet reaches **≥ 90/100** vs. a recorded **before-score** captured at triage
-on the dataset as-published. The before/after pair is stored in the dataset's gate/provenance artifact.
+source-verified* — data-dictionary coverage of all documented fields, provenance complete (incl.
+`upstreamVersionDoi`), license recorded with `permitsDerivatives` + `shareAlike` + cited clause, access-tier
++ identifiability assessment complete, Datasheet sections answered, valid Croissant emitted, **every
+assertion carrying a provenance citation**. The "every assertion has a citation" rule is **machine-enforced
+by a citation-coverage lint** (flags any datasheet sentence lacking a citation anchor; the 90/100 bar is not
+reviewer-judged on this dimension), feeding the score. Target: every delivered datasheet reaches **≥ 90/100**
+vs. a recorded **before-score**. The before-score is defined **against the source portal's *existing*
+metadata** (e.g. GDC structured fields, the GEO MIAME record), **not against nothing** — a dataset with no
+prior datasheet does not get a trivially-near-0 before-score that inflates apparent improvement. The
+before/after pair is stored in the dataset's gate/provenance artifact.
 
 **Attribution of outcomes.** A "reuse event" must be externally verifiable (a citation, a portal/repo
 acceptance record, a merged PR, a Zenodo DOI referenced elsewhere). Self-reported reuse does not count.
@@ -168,6 +180,70 @@ COSMIC, OncoKB, and any controlled-access resource are **explicitly excluded fro
 - Automated, unattended publishing to any portal.
 - Any task that primarily serves a for-profit entity's private interest.
 
+## Competitive landscape & differentiation
+
+No incumbent delivers *verified, license-gated, access-tier-aware, provenance-complete, machine-readable*
+datasheets across cancer portals. **Portals own the data and the tier-of-record; standards own the format;
+nobody owns the curated, verified bridge.** That bridge is this project.
+
+**Documentation standards / frameworks (templates, not rivals).**
+- **Datasheets for Datasets** (Gebru et al., CACM 2021) — the 57-question / 7-section questionnaire we adopt.
+  Strength: peer-reviewed, widely accepted vocabulary. Gap: prose-only, no machine-readable output, no
+  license/access-tier verification, no genomics/identifiability notion. We use it as the *template*.
+- **MLCommons Croissant (1.0 / now 1.1)** — machine-readable JSON-LD over schema.org; **1.1 adds DUO/PROV-O
+  permission+provenance layers and MCP**. Strength: the interoperability substrate, indexable by Google
+  Dataset Search. Gap: a *format*, not curated/verified content — says nothing about whether a cancer file is
+  open vs. dbGaP-controlled. We **emit** Croissant (target 1.1 DUO/PROV-O); it is our output format, not a
+  competitor.
+- **Data Nutrition Project (Dataset Nutrition Label, 2nd-gen)** — FDA-style at-a-glance label; a model for the
+  optional **M4** patient explainers. Gap: generic, no license-gate, limited live coverage.
+- **Hugging Face dataset cards** — README + YAML frontmatter, `mlcroissant` export. Strength: huge reach.
+  Gap: author-self-reported and frequently empty/unverified, license fields routinely wrong, no
+  genomic-privacy gating, and not where cancer-portal data lives.
+
+**Discovery / search (complements, not rivals).**
+- **Google Dataset Search** — indexes schema.org/`Dataset` JSON-LD; emitting Croissant makes our datasheets
+  findable. Gap: indexes whatever publishers assert, with no verification — a complement.
+- **OmicsDI (EMBL-EBI)** — cross-omics metadata harmonization + discovery via a unified REST API. Gap:
+  discovery-grade (thin) per-dataset metadata, no license-verification gate, no access-tier/identifiability
+  verdict, no Datasheets narrative.
+
+**The cancer data portals themselves (the real incumbents).**
+- **NCI GDC / CRDC** — authoritative TCGA host; canonical, harmonized, programmatic API; the **source of truth
+  on tier**. Gap: portal-/schema-centric, technical docs; no Datasheets narrative, no Croissant, no
+  plain-language layer; tier facts live in policy pages, not per-file machine metadata.
+- **cBioPortal** — rich genomic browsing over TCGA/TARGET + many studies; **ODbL default with per-study
+  notes**. Weakness: **clinical metadata is documented as "extremely heterogeneous and lacks standardization"
+  — different studies use arbitrary terms for identical entities**, and the license is per-study and easy to
+  get wrong. This heterogeneity is precisely the gap we fill (harmonize to OncoTree/NCIt).
+- **DepMap (Broad)** — CC BY 4.0 on Figshare, **DOI-per-quarterly-release**. Gap: docs are release-notes +
+  readmes; no standardized datasheet/Croissant; cross-quarter version drift is a documentation burden nobody
+  centrally solves.
+- **GEO (NCBI)** — MIAME/MINSEQE minimum metadata, stable accessions. Gap: MIAME is *minimum*; reuse-fitness
+  and license are thin/free-text; some series link controlled SRA/dbGaP components — the open-vs-controlled
+  boundary risk we target.
+- **Kaggle cancer datasets** — accessible but provenance/license frequently broken or mis-stated, re-hosted
+  derivatives with lost lineage — an anti-pattern that motivates this project.
+
+**Our differentiators (the moat).**
+- **The two-part VERIFIED gate is the moat.** Access-tier + identifiability verified **before** license, both
+  as committed, auditable artifacts — a "**this is safely open, and here is the cited proof**" verdict
+  (access-tier + identifiability + cited license clause). **No portal, HF, OmicsDI, or Croissant ships this.**
+- **Verification, not assertion.** HF cards and Google Dataset Search index self-reported metadata; we deliver
+  *source-verified, cited, snapshotted* records with a **zero-tolerance** privacy/safety metric.
+- **Cancer-license-matrix-of-record** — a correctly-tiered, clause-cited matrix spanning
+  GDC/GEO/cBioPortal(**ODbL**)/DepMap/COSMIC/OncoKB/ICGC/CPTAC/SEER — the artifact everyone needs and nobody
+  maintains; it correctly distinguishes CC-BY (DepMap) vs. ODbL share-alike (cBioPortal) vs. GDS-open (GDC)
+  vs. NC/custom (COSMIC/OncoKB) vs. per-series GEO checks.
+- **Machine-readable permissions via Croissant (push to 1.1 DUO/PROV-O)** — consent/access constraints as
+  ontology terms, not prose; uniquely on-mission and future-proofed for agent (MCP) consumption.
+
+**Division of labor with the Elyos siblings** (see the reuse contract under Solution approach): three layers
+— **general toolkit** (`open-data-datasheets`, which owns the shared canonical model/Croissant
+validator/inspection protocol) → **cancer-wide verified datasheets + gate** (this project, the genomics
+*superset*) → **disease-specific discovery** (`ewing-open-data-catalog`, which *consumes/links* these
+datasheets). Win condition: one shared codebase, three scopes, **zero validator triplication**.
+
 ## Solution approach & architecture
 
 This is a **content/data-documentation project with light software** (template + validators + a
@@ -200,13 +276,23 @@ germline/identifiability scanner + Croissant generator). It is **not** a data pi
 (Datasheet, Croissant, portal-specific) are *projections* of it. Fields include:
 `id`, `title`, `source` (`gdc-tcga | geo | cbioportal | depmap | other`), `accession`, `sourceUrl`,
 `accessTier` (`open | controlled` — **only `open` admissible**), `license {id, url, permitsDerivatives:boolean,
-nonCommercial:boolean, snapshotRef, citedClause}`, `provenance {repository, accession, retrievedAt,
-release, dataFreeze, updateCadence, attribution, requiredCitation, gdsPolicyNote}`,
-`identifiability {individualLevel:boolean, germlinePresent:boolean, reIdentificationRisk:string,
+nonCommercial:boolean, shareAlike:boolean, snapshotRef, citedClause}`, `provenance {repository, accession,
+retrievedAt, release, upstreamVersionDoi, dataFreeze, updateCadence, attribution, requiredCitation,
+gdsPolicyNote}`, `identifiability {individualLevel:boolean, germlinePresent:boolean, reIdentificationRisk:string,
 publisherDeidentification:string, attestation:string}`, `ontology {disease[], assay[]}`,
 `fields[] {name, type, units, allowedValues, nullable, description, caveats, ontologyRef}`,
 `knownIssues[]`, `examples[]` (synthetic/illustrative only), `provenanceCitations[]` (one per assertion),
 `specVersions {croissant}`, `patientFacing:boolean`, `completenessScore {before, after}`.
+
+The `license.shareAlike` flag (added in v0.2) captures **ODC-ODbL and other copyleft/share-alike terms** —
+this is **cBioPortal's stated default** (unless otherwise noted, cBioPortal data are available under the
+**ODC Open Database License (ODbL)** with attribution, and some studies further restrict commercial use).
+ODbL is **materially different from CC-BY**: whether share-alike terms permit our **CC-BY-licensed derivative
+documentation** is a **License + Genomic-Privacy reviewer ruling, not a guess** (metadata-about-data likely
+escapes the ODbL database right, but this must be decided, cited, and recorded before any cBioPortal source
+is documented). `provenance.upstreamVersionDoi` (added in v0.2) requires pinning the **exact upstream dataset
+DOI / release identifier** (e.g. a DepMap Figshare per-quarter DOI, a GDC data-release number) — not only a
+free-text `release` string — so a datasheet names "DepMap 24Q4 (DOI …)", never an ambiguous "DepMap public".
 **Hard invariant:** any record with `accessTier != open`, `identifiability.individualLevel == true`, or
 `identifiability.germlinePresent == true` is rejected by the gate and never produced.
 
@@ -214,11 +300,35 @@ publisherDeidentification:string, attestation:string}`, `ontology {disease[], as
 generator are small Node packages with minimal dependencies. Documentation authored in Markdown +
 JSON/JSON-LD. No runtime services; everything runs locally or in CI.
 
+**Reuse contract with `open-data-datasheets` (this project is the genomics SUPERSET, not a fork).** The
+sibling `open-data-datasheets` (general/civic open data) **owns the shared toolkit** — the canonical
+metadata model, the Croissant validator (+ golden fixtures), the bounded 1,000-row/5 MB inspection
+protocol, and the CC-BY-output/MIT-code split. cancer-dataset-datasheets **reuses those as a dependency and
+extends them**; it does **not** re-implement a parallel canonical model, Croissant validator, or inspection
+protocol (doing so would leave Elyos maintaining three drifting validators). What this project genuinely
+**adds on top** — its reason to be a superset — is the **access-tier + identifiability gate, the germline/
+identifiability scanner, the k≥5 check, the cancer-source license matrix (incl. ODbL/share-alike), the
+OncoTree/NCIt ontology layer, the upstream-version-DOI pinning, and the oncologist/advocate review track.**
+The written reuse manifest (which components are shared dependencies vs. cancer-specific extensions, and who
+owns the shared core) is a deliverable of `template-003`/`croissant-007`. Boundary with
+`ewing-open-data-catalog`: that is a single-disease **discovery/catalog** layer that **consumes and links**
+these datasheets for its vertical; this project **produces the deep per-dataset datasheet+gate+Croissant
+artifact** and does **not** re-build a disease catalog. Net: one shared codebase, three scopes
+(general toolkit → cancer-wide verified datasheets → disease-specific discovery), **zero validator
+triplication**. Any Ewing-sarcoma open dataset is owned here for the datasheet; ewing points at it.
+
 **Pinned spec versions** (recorded in `specVersions`, bumped only via a deliberate task):
 - **Datasheets for Datasets** — Gebru et al. (2021) questionnaire.
-- **Croissant ML** — v1.0 (MLCommons); validate against the v1.0 JSON-LD context/SHACL.
-- **Ontologies** — NCI Thesaurus (NCIt), OncoTree, Disease Ontology, EDAM (assay/format) — versions
-  recorded per datasheet.
+- **Croissant ML** — **target v1.1 (MLCommons)** for its first-class **DUO (Data Use Ontology) + PROV-O
+  permission/provenance layers**, which natively encode the access-tier/consent constraints this project
+  exists to assert (e.g. `DUO:0000004` no-restriction, disease-specific, non-commercial) — emitting these as
+  ontology terms rather than free-text prose is squarely on-mission and future-proofs for agent (MCP)
+  consumption + Google Dataset Search indexing. The generator may pin **v1.0 transitionally** for stability,
+  but if so it must **record why** and **schedule the 1.1 bump** (the DUO/PROV-O layer is not optional polish —
+  it is the machine-readable form of the gate verdict). Validate against the pinned context/SHACL either way.
+- **Ontologies** — **OncoTree is the primary disease vocabulary** (the de-facto cancer standard cBioPortal
+  itself uses), with **NCI Thesaurus (NCIt) and Disease Ontology as secondary crosswalks** to remove
+  three-vocabulary mapping ambiguity; EDAM for assay/format — versions recorded per datasheet.
 
 **Bounded dataset-inspection access protocol** (makes "describe but never store, never re-identify"
 enforceable — inspection is the only point we touch data):
@@ -243,6 +353,34 @@ enforceable — inspection is the only point we touch data):
 - Adapters/generators are output-only; a human performs the actual portal submission.
 - Patient-facing content is a separate, gated track (`riskTier: high`), never bundled into core datasheets.
 
+**Claude API leverage (always human-verified; the gate verdict is never an LLM's to make).** This is a
+donated-lane project — a human runs their agent; Claude is an *acceleration and drafting* layer feeding the
+mandatory human reviews, never an autonomous decider. Where it adds clear value:
+- **Draft the Datasheets-for-Datasets narrative** from inspected schema + portal metadata — the 7-section
+  questionnaire answers as a *reviewer-ready draft*, with **each sentence tagged with a provenance anchor**
+  so the citation-coverage lint can verify it (see provenance lint below).
+- **License-clause extraction → structured verdict PROPOSAL.** Claude reads the license/terms text and
+  *proposes* `permitsDerivatives`, `nonCommercial`, `shareAlike`, and the **exact cited clause** as a
+  structured candidate the License + Genomic-Privacy reviewer **confirms or overturns** — high leverage on
+  cBioPortal's per-study notes and the ODbL-vs-CC-BY distinction.
+- **Schema → Croissant JSON-LD mapping + clinical-field harmonization** — emit valid Croissant (target 1.1
+  DUO/PROV-O) and **normalize cBioPortal's heterogeneous clinical field names to OncoTree/NCIt codes** (the
+  documented "arbitrary terms for identical entities" problem the portal does not enforce).
+- **Identifiability/quasi-identifier triage assist** — flag candidate quasi-identifier combinations and
+  small-cell-count risks for the scanner/reviewer (assist input, **never** the gate decision).
+- **Plain-language M4 explainer drafts** — education-only first drafts for oncologist + advocate review.
+
+**Hard guardrails on Claude's role (non-negotiable):** access-tier and license/`permitsDerivatives`
+determinations are **human-verified** — Claude proposes with citations, the named reviewer decides (an LLM
+mislabeling a controlled file as open is the project's critical failure mode). **No fabricated provenance** —
+every citation must resolve to a real source; Claude must never invent a DOI, license URL, accession, or
+clause, and citation anchors are verified, not trusted. **Never ingest controlled/identifiable data** —
+Claude operates only on confirmed open-tier, bounded (≤1,000 rows/5 MB), aggregate/de-identified samples and
+must **never** be pointed at dbGaP/EGA/DACO endpoints; on any germline/individual-level/controlled signal,
+halt. **No clinical interpretation** and **no de-identification by us** (Claude documents the *publisher's*
+de-identification; it never anonymizes/aggregates data itself). Confirm current model IDs via the
+`claude-api` skill before any build; do not quote model/pricing from memory.
+
 ## Data, licensing & compliance
 
 **THIS IS THE CRITICAL SECTION. It leads with the binding cancer guardrails; everything below is
@@ -265,14 +403,14 @@ subordinate to them.**
 
 | Source | In-scope tier | Access/license posture | Disposition |
 | --- | --- | --- | --- |
-| **TCGA via GDC** | GDC **open-access** data (e.g. gene expression, copy-number, masked somatic mutations, de-identified clinical/biospecimen) | Open data: no use restrictions under the **NIH Genomic Data Sharing (GDS)** policy; TCGA publication/citation guidelines apply; **controlled-access (raw sequence, germline) via dbGaP is OUT OF SCOPE** | **ACCEPT** open-tier; document required TCGA citation; never touch controlled tier |
-| **GEO (NCBI)** | Public/open series (processed/aggregate) | NCBI public data, generally unrestricted reuse; **per-series check** — some series link raw/individual-level data in SRA/dbGaP (controlled) → exclude those linked files | **ACCEPT** open series; verify each series; exclude any controlled-linked components |
-| **cBioPortal** | Studies whose underlying data are open; portal software is open-source | Data redistributed under **each original study's terms** — must be verified per study; some derive from TCGA (open) | **ACCEPT per-study only after terms verified**; otherwise FLAG |
-| **DepMap (Broad)** | Public DepMap/CCLE releases | Recent public releases under **CC BY 4.0** (verify the specific release/file; some files carry distinct terms) | **ACCEPT** with release-specific license recorded; verify each release |
+| **TCGA via GDC** | GDC **open-access** data (e.g. gene expression, copy-number, de-identified clinical/biospecimen) | Open data: no use restrictions under the **NIH Genomic Data Sharing (GDS)** policy (bound by the GDS non-re-identification clause); TCGA publication/citation guidelines apply; **controlled-access (raw sequence, germline) via dbGaP is OUT OF SCOPE**. **Tier is per-file per-GDC-release, not per-data-type** — e.g. masked somatic-mutation MAFs have moved between open and controlled in past GDC policy iterations, so "masked somatic mutations = open" is **not durably true** and must be re-verified each release | **ACCEPT** open-tier **per file per release**; document required TCGA citation; never touch controlled tier |
+| **GEO (NCBI)** | Public/open series (processed/aggregate; MIAME/MINSEQE minimum metadata) | NCBI public data, generally unrestricted reuse; **per-series check** — some series link raw/individual-level data in SRA/dbGaP (controlled) → exclude those linked files | **ACCEPT** open series; verify each series; exclude any controlled-linked components |
+| **cBioPortal** | Studies whose underlying data are open; portal software is open-source | **Stated default: unless otherwise noted, data are under the ODC Open Database License (ODbL) with attribution**, and some studies additionally restrict commercial use; individual studies may carry their own terms (some derive from TCGA = GDS-open). **ODbL is share-alike** — record `shareAlike: true` and obtain a reviewer ruling on whether our CC-BY documentation is compatible **before** documenting. Clinical metadata is documented as **"extremely heterogeneous / non-standardized"** (arbitrary per-study terms for identical entities) | **ACCEPT per-study only after terms (ODbL-default vs. study-specific) AND the share-alike/CC-BY compatibility ruling are verified**; otherwise FLAG |
+| **DepMap (Broad)** | Public DepMap/CCLE releases (quarterly, DOI-per-release on Figshare) | Recent public releases under **CC BY 4.0** (verify the specific release/file; some files carry distinct terms). **Pin the per-quarter release DOI** (e.g. DepMap 24Q4) in `upstreamVersionDoi`, never just "DepMap public" | **ACCEPT** with release-specific license + version DOI recorded; verify each release |
 | **COSMIC** | — | **Non-commercial license**; commercial reuse requires a paid license; redistribution restricted | **FLAG / EXCLUDE from do-first**; escalate to license policy; never treat as open |
 | **OncoKB** | — | **Custom license**, free for research only, redistribution/commercial restricted | **FLAG / EXCLUDE from do-first**; escalate; never treat as open |
 | **ICGC / PCAWG** | Open-tier summaries only | Mixed: open + **DACO-controlled** individual-level data | **ACCEPT open-tier only**; controlled tier OUT OF SCOPE |
-| **CPTAC (PDC)** | Open proteomics/aggregate | Generally open; verify per dataset | **ACCEPT** open-tier after verification |
+| **CPTAC (PDC)** | Open proteomics/aggregate | Often open, **but CPTAC genomic / germline-adjacent components also have controlled portions in the GDC/PDC split** — default to a **cautious lean**, verify per dataset, and never assume the whole study is open | **ACCEPT** open-tier **only after per-dataset verification**; controlled components OUT OF SCOPE |
 | **SEER** | Public **aggregate** incidence/mortality statistics | Aggregate stats public; **SEER research (individual-level) data requires a signed agreement** → out of scope | **ACCEPT aggregate stats only**; individual-level OUT OF SCOPE |
 
 *Versions/dates of each license are captured per dataset; the matrix is re-verified each milestone.*
@@ -281,7 +419,10 @@ subordinate to them.**
 accepted by the matrix/policy **and** `license.permitsDerivatives: true` is recorded with a cited
 clause/URL evidencing derivative documentation/metadata is allowed. Missing evidence, an unparseable
 license, non-commercial terms without a decided policy, or `permitsDerivatives` that cannot be set `true`
-from the source text = **FLAG/EXCLUDE**, never default-allow.
+from the source text = **FLAG/EXCLUDE**, never default-allow. **Share-alike (ODbL/copyleft) sources** (cBioPortal
+default) additionally require `license.shareAlike: true` **and** a recorded reviewer ruling on whether
+CC-BY documentation derived from a share-alike source is compatible — until that ruling exists, the source is
+**FLAG**, not PASS.
 
 **Provenance model.** Every documented dataset records: source repository, accession/ID, source URL,
 retrieval timestamp, release/version, data freeze/cutoff, update cadence, license id + URL + a captured
@@ -296,7 +437,14 @@ because de-identified genomic data carries documented re-identification risk:
 - **Germline / individual-level scanner.** During inspection, flag any per-individual genotype, germline
   variant calls, raw sequence, sample-level identifiers tied to a person, dates of birth/death at day
   precision, or quasi-identifier combinations (age + sex + rare-diagnosis + geography) below a **k ≥ 5**
-  equivalence class. Any hit → EXCLUDE/FLAG and halt inspection.
+  equivalence class. Any hit on **individual-level** content → EXCLUDE/FLAG and halt inspection.
+- **Suppression-aware small-cell exception (aggregate tables).** Rare-cancer cohorts routinely show
+  small cell counts (k < 5) **even in legitimately-open aggregate summary tables** (e.g. SEER-style
+  incidence counts that the publisher has already cell-suppressed/rounded). To avoid **over-EXCLUDING valid
+  open summaries**, a small-cell finding in an *aggregate count table that is not individual-level* routes to
+  a **documented suppression-aware review exception**, not an automatic halt: the reviewer records that the
+  table is aggregate, confirms the publisher's suppression/rounding, and notes residual risk. This exception
+  **never** applies to individual-level or re-identifiable records — those always EXCLUDE.
 - **Linkage risk.** Flag datasets trivially linkable to an external person-level key. We never perform
   linkage; we only flag risk so the dataset is excluded.
 - **Publisher de-identification, not ours.** We never de-identify, anonymize, or aggregate data ourselves
@@ -308,6 +456,11 @@ The scanner output (which checks ran, what fired) is recorded in the committed g
 required citation, links to the original, and clearly states the **documentation — not the data** is our
 contribution. Documentation/metadata output is licensed **CC-BY-4.0**; validator/scanner/generator **code
 is MIT**. Where a source requires a specific citation (TCGA, DepMap), that citation is reproduced verbatim.
+**Share-alike caveat:** for **ODbL/share-alike sources (cBioPortal default)**, the CC-BY output licensing is
+contingent on the reviewer's compatibility ruling — metadata-about-data likely escapes the ODbL database
+right, but where a share-alike obligation could attach to our derived output we follow the reviewer's
+recorded determination (which may require a compatible license or a different attribution stance) rather than
+defaulting to CC-BY.
 
 ## Quality, review & risk gates
 
@@ -320,8 +473,9 @@ interpretation, and identifiability judgement). **`high`** for any **patient-fac
   reuse+derivatives, COSMIC/OncoKB-style terms correctly flagged. **No deed ships without this sign-off.**
   This role must be filled **before the M0 pilot is reviewed**.
 - **Technical reviewer:** confirms the data dictionary, access-tier assessment, Datasheet, Croissant
-  metadata, and validation script are accurate, that **every assertion has a provenance citation**, and
-  that CI is green.
+  metadata, and validation script are accurate, that **every assertion has a provenance citation** (verified
+  by the citation-coverage lint, not eyeballed), that the **upstream version DOI** is pinned, and that CI is
+  green.
 - **Oncologist + patient-advocate reviewers** (mandatory for *any* patient-facing surface; escalates the
   task to `riskTier: high`): confirm the content is education only, accurate, non-stigmatizing, carries
   the "not medical advice" banner, and contains no clinical/treatment/prognostic guidance.
@@ -329,11 +483,15 @@ interpretation, and identifiability judgement). **`high`** for any **patient-fac
 **Test fixtures & golden files (so "CI green" means something).** Each tool ships with committed test
 assets exercised in CI, using only **synthetic/public** fixtures (never real inspected data):
 - **Croissant validator** — golden JSON-LD fixtures (known-valid must pass; malformed must fail) against
-  pinned Croissant v1.0.
+  the pinned Croissant version (**target v1.1 incl. DUO/PROV-O permission fields**; v1.0 transitionally).
 - **Germline/identifiability scanner** — synthetic fixtures that must trip each rule (individual-level,
-  germline, low-k quasi-identifiers, controlled-access markers) and clean fixtures that must pass.
+  germline, low-k quasi-identifiers, controlled-access markers) and clean fixtures that must pass, **plus a
+  fixture for the suppression-aware small-cell aggregate exception** (open aggregate count table that routes
+  to review, not auto-halt).
+- **Citation-coverage lint** — fixtures where every assertion is anchored (must pass) and where an assertion
+  lacks a citation anchor (must fail), so provenance-on-every-assertion is machine-enforced.
 - **Gate checklist** — a worked example PASS artifact and a worked EXCLUDE artifact (e.g. a COSMIC entry)
-  committed as references.
+  committed as references, **plus a cBioPortal/ODbL FLAG-until-ruled artifact**.
 
 **Definition of Shipped.** Documentation + machine-readable metadata **accepted onto the dataset's
 portal/repo/archive** (per the per-channel acceptance definitions in Success metrics), with: open-access
@@ -353,13 +511,20 @@ recorded acceptance by the beneficiary is.
   release** file, or a **TCGA open-tier expression matrix via GDC**), and (b) a realistic acceptance path
   — an informal steward channel *or* a **self-serve Zenodo metadata DOI** we can publish ourselves — so
   M0 yields a real *accepted* outcome, not a "submitted, pending" one.
-- Exit criteria: (1) datasheet template + canonical metadata model published; (2) **cancer-source
-  licensing matrix** published with cited evidence; (3) **access-tier + identifiability gate** and
-  **license gate** checklists exist and are applied to one dataset; (4) Croissant validator + germline/
-  identifiability scanner working in CI with golden fixtures; (5) **License + Genomic-Privacy reviewer
-  named** (blocking role filled before pilot review); (6) one open-access dataset documented end-to-end
-  and **accepted** via informal channel or Zenodo DOI (acceptance artifact recorded) — or, if no channel
-  materializes, **submitted** with the blocker surfaced; (7) ≥ 1 steward-outreach thread opened.
+- Exit criteria: (1) datasheet template + canonical metadata model published, **with the written reuse
+  contract** declaring which components are reused from `open-data-datasheets` vs. cancer-specific
+  extensions (no parallel canonical-model/validator/inspection reimplementation); (2) **cancer-source
+  licensing matrix** published with cited evidence, **including ODbL/share-alike for cBioPortal** and the
+  recorded **CC-BY-vs-share-alike reviewer ruling**; (3) **access-tier + identifiability gate** and
+  **license gate** checklists exist (with the **suppression-aware small-cell exception** for open aggregate
+  tables) and are applied to one dataset; (4) Croissant validator + germline/identifiability scanner working
+  in CI with golden fixtures, **plus a Croissant-version decision recorded (target 1.1 DUO/PROV-O, or pinned
+  1.0 with a scheduled bump)** and a **citation-coverage lint** enforcing provenance-on-every-assertion;
+  (5) **License + Genomic-Privacy reviewer named** (blocking role filled before pilot review);
+  (6) one open-access dataset documented end-to-end (with **upstream version DOI pinned** and the before-score
+  taken against existing portal metadata) and **accepted** via informal channel or Zenodo DOI (acceptance
+  artifact recorded) — or, if no channel materializes, **submitted** with the blocker surfaced; (7) ≥ 1
+  steward-outreach thread opened; **OncoTree fixed as the primary disease vocabulary** (NCIt/DO secondary).
 
 **M1 — Gates hardened + first acceptances**
 - Goal: make both gates rigorous and get real deliveries accepted.
@@ -371,16 +536,22 @@ recorded acceptance by the beneficiary is.
 **M2 — Source coverage & scale (TCGA/GDC · GEO · cBioPortal · DepMap)**
 - Goal: prove the template across all four target sources and reduce per-dataset effort.
 - Exit criteria: (1) at least one accepted datasheet exists for **each** of TCGA/GDC, GEO, cBioPortal,
-  and DepMap (cBioPortal study terms verified per study); (2) ≥ 5 datasets accepted cumulatively;
-  (3) median per-dataset effort (AI-session minutes + human-review cycles, from the outcome ledger)
-  measurably reduced vs. the recorded M0/M1 baseline; (4) germline/identifiability scanner integrated
-  into the standard inspection flow.
+  and DepMap (cBioPortal study terms — ODbL-default vs. study-specific — and the share-alike ruling verified
+  per study); (2) ≥ 5 datasets accepted cumulatively; (3) median per-dataset effort (AI-session minutes +
+  human-review cycles, from the outcome ledger) measurably reduced vs. the recorded M0/M1 baseline;
+  (4) germline/identifiability scanner integrated into the standard inspection flow; (5) **cBioPortal's
+  heterogeneous clinical fields harmonized to OncoTree/NCIt** in at least the cBioPortal datasheet, and
+  **Croissant 1.1 DUO/PROV-O emission landed** (or the scheduled bump executed) so access-tier/consent ship
+  as ontology terms.
 
 **M3 — Reuse outcomes & sustainability**
 - Goal: demonstrate real downstream reuse and a maintenance model.
 - Exit criteria: (1) ≥ 2 verifiable external reuse events; (2) ≥ 6 datasets accepted cumulatively;
-  (3) documented refresh/version-drift process (cancer datasets re-release regularly — e.g. GDC data
-  releases, DepMap quarterly) and a steward identified for ongoing liaison.
+  (3) documented refresh/version-drift process keyed on the **pinned upstream version DOI/release-id**
+  (cancer datasets re-release regularly — e.g. GDC data releases, DepMap quarterly 23Q4/24Q2/24Q4) and a
+  steward identified for ongoing liaison; (4) accepted datasheets **emit schema.org/`Dataset` + Croissant
+  JSON-LD and are hosted where Google Dataset Search can crawl them** (e.g. Zenodo/GitHub Pages), converting
+  the Zenodo fallback into a real, discoverable distribution channel.
 
 **M4 — (Optional, gated) Patient/advocate plain-language explainers — `riskTier: high`**
 - Goal: turn selected, already-shipped datasheets into education-only plain-language explainers.
@@ -421,9 +592,14 @@ becomes a task until it passes both gates — listing a dataset does not pre-app
 
 ## Dependencies & integrations
 
-- **External standards/specs (pinned):** Datasheets for Datasets (Gebru et al. 2021), Croissant ML v1.0,
-  schema.org/Dataset, SPDX license identifiers; ontologies NCIt, OncoTree, Disease Ontology, EDAM.
-  Versions recorded in `specVersions` and bumped only via a deliberate task.
+- **External standards/specs (pinned):** Datasheets for Datasets (Gebru et al. 2021), **Croissant ML
+  (target v1.1 for DUO/PROV-O; v1.0 only transitionally with a scheduled bump)**, schema.org/Dataset, SPDX
+  license identifiers (incl. **ODC-ODbL** for cBioPortal); ontologies **OncoTree (primary)**, NCIt + Disease
+  Ontology (secondary crosswalks), EDAM. Versions recorded in `specVersions` and bumped only via a
+  deliberate task.
+- **Sibling Elyos projects (reuse, not fork):** `open-data-datasheets` owns the shared canonical model /
+  Croissant validator / inspection protocol (consumed as a dependency); `ewing-open-data-catalog` consumes
+  and links the datasheets produced here. See the reuse contract under Solution approach.
 - **External sources/portals:** NCI **GDC** (TCGA open tier), **GEO**/NCBI, **cBioPortal** (GitHub),
   **DepMap**/Broad; archives (Zenodo). Integration is *read-only inspection of open tiers* + *output-only
   metadata*; **no controlled-access authentication**, no automated upload.
@@ -446,8 +622,10 @@ becomes a task until it passes both gates — listing a dataset does not pre-app
 | Unsourced assertion slips into a datasheet | Medium | Medium | Provenance-on-every-assertion invariant; technical review checks `provenanceCitations[]` coverage | Technical reviewer |
 | No partner secured → docs produced but never accepted (fails "delivered") | Medium | High | M0 steward outreach + Zenodo self-serve fallback; steward role; `verifiedNeed:false` until secured | Steward |
 | Source data re-release makes docs stale (GDC/DepMap refresh often) | Medium | Medium | Record release/freeze + cadence; validation detects schema drift; refresh milestone (M3) | Maintainer |
-| cBioPortal study terms vary per study | Medium | Medium | Per-study license verification required; no blanket acceptance | License+Privacy reviewer |
-| Croissant/ontology spec drift | Low | Low | Canonical-model-first; pinned spec versions; isolated version-bump task | Maintainer |
+| cBioPortal **ODbL share-alike** mis-handled / treated as CC-BY-compatible without a ruling | Medium | High | ODbL added to matrix + `shareAlike` flag; reviewer ruling on CC-BY-vs-share-alike required before any cBioPortal source PASSes; FLAG until ruled | License+Privacy reviewer |
+| cBioPortal study terms vary per study + heterogeneous clinical fields | Medium | Medium | Per-study license verification; OncoTree/NCIt harmonization of clinical fields; no blanket acceptance | License+Privacy reviewer |
+| **Validator/canonical-model triplication & drift** across the three sibling projects | Medium | Medium | Reuse contract: reuse `open-data-datasheets`'s shared toolkit; extract a shared verified-datasheet core; no parallel reimplementation | Maintainer |
+| Croissant/ontology spec drift (e.g. 1.0→1.1) | Low | Low | Canonical-model-first; pinned spec versions; recorded version decision + isolated version-bump task | Maintainer |
 | Scope creep into analysis/interpretation | Medium | Medium | Explicit non-goal; reviewers reject any interpretation/ranking | Maintainer |
 
 ## Security & privacy
@@ -480,10 +658,44 @@ becomes a task until it passes both gates — listing a dataset does not pre-app
   success metrics, reviewed each milestone. The licensing matrix is re-verified each milestone (licenses
   and access policies change).
 
+## Adjacent opportunities
+
+Parallel and perpendicular spin-offs surfaced by the competitive analysis — **not committed scope**, recorded
+so the strategy is captured and the core stays focused. Each reuses (never re-implements) the verified core.
+- **Shared Elyos "verified-datasheet core"** — extract the canonical model + Croissant validator + bounded
+  inspection protocol into one package consumed by `open-data-datasheets`, `cancer-dataset-datasheets`, and
+  `ewing-open-data-catalog` (kills the triple-validator drift; the structural realization of the reuse
+  contract).
+- **`open-cohort-catalog`** — a cancer-wide cohort-finder discovery index layered *on* these datasheets (the
+  cancer analogue of what ewing does for one disease); consumes datasheets, does not re-document.
+- **`cancer-data-dictionaries`** — spin the per-field dictionary + OncoTree/NCIt crosswalk into a standalone
+  harmonization asset that directly attacks cBioPortal's documented metadata heterogeneity (potentially
+  contributable upstream).
+- **Verified-datasheet MCP server** — expose accepted datasheets/Croissant via MCP so agents can query "is
+  dataset X open, what's its license, what fields" with cited provenance (aligns with Croissant's own MCP
+  direction). **Read-only, open-tier metadata only** — never controlled/identifiable data.
+- **"Gate-as-a-service"** — package the access-tier + identifiability + license gate as a reusable check
+  other Elyos health/genomics projects (and external curators) invoke before touching a dataset.
+- **Datasheet ↔ Dataset-Nutrition-Label adapter** — auto-render the M4 plain-language label from the
+  canonical model, reusing the Data Nutrition Project's accessible framing for patients/advocates.
+
 ## Open questions
 
 - Which specific steward(s)/maintainer(s) (GEO submitter, cBioPortal community, DepMap, a curation group)
   will be the first confirmed contribution partner?
+- **cBioPortal / ODbL share-alike (blocks the entire cBioPortal source):** does CC-BY-licensed *documentation*
+  derived from an ODbL share-alike source create a license conflict, and what is the License + Genomic-Privacy
+  reviewer's standing rule?
+- **Croissant 1.0 vs 1.1:** pin 1.0 for stability, or adopt 1.1's DUO/PROV-O permission layer that directly
+  encodes access-tier/consent — and when is the bump scheduled?
+- **Reuse contract with `open-data-datasheets`:** which components are shared dependencies vs. cancer-specific
+  extensions, and who owns the shared core?
+- **Boundary with `ewing-open-data-catalog`:** confirm catalog-consumes-datasheet (not parallel
+  documentation) for any Ewing-sarcoma open dataset.
+- **Small-cell / k≥5 over-exclusion:** what is the documented suppression-aware exception for legitimately-open
+  aggregate cancer count tables that trip the identifiability scanner?
+- **Reviewer-gated targets:** is the "6 accepted in 6 months" target explicitly conditioned on the
+  License + Genomic-Privacy reviewer being seated (the named hard blocker)?
 - For DepMap, which exact releases/files are CC-BY vs. otherwise-restricted (must be pinned per release)?
 - For cBioPortal, what is the per-study license verification workflow, and which studies are unambiguously
   open (TCGA-derived) for the first deliveries?
@@ -501,13 +713,19 @@ becomes a task until it passes both gates — listing a dataset does not pre-app
 - Task JSON schema — `C:\code\elyos\packages\schema\src\schemas.ts`
 - Portfolio roadmap (Track 8 cancer guardrails) — `C:\code\elyos\planning\ROADMAP.md`
 - Sibling project (house style) — `C:\code\elyos\planning\projects\open-data-datasheets\PLAN.md`
-- Datasheets for Datasets — Gebru et al. (2018/2021)
-- Croissant ML metadata format specification (MLCommons), v1.0
-- NCI Genomic Data Commons (GDC) data access policies; TCGA publication/citation guidelines
+- Datasheets for Datasets — Gebru et al. (2018/2021) — https://arxiv.org/abs/1803.09010
+- Croissant ML metadata format specification (MLCommons) — **v1.1 (DUO/PROV-O + MCP)**, v1.0 prior —
+  https://mlcommons.org/2026/02/croissant-1-1-standard/ · https://mlcommons.org/2025/10/croissant-mcp/
+- NCI Genomic Data Commons (GDC) / CRDC data access policies; TCGA publication/citation guidelines —
+  https://gdc.cancer.gov/access-data/data-access-policies · https://datacommons.cancer.gov/cancer-research-data-commons
 - NIH Genomic Data Sharing (GDS) policy; dbGaP / EGA controlled-access models (for exclusion)
-- DepMap data-use terms; cBioPortal data-usage and per-study terms
+- DepMap data-use terms (CC BY 4.0, quarterly Figshare DOIs); cBioPortal data-usage and **ODbL-default /
+  per-study terms** — https://docs.cbioportal.org/user-guide/faq/ · https://plus.figshare.com/articles/dataset/DepMap_24Q4_Public/27993248
+- cBioPortal clinical-metadata heterogeneity — https://www.biorxiv.org/content/10.1101/2025.11.26.689816v1
 - COSMIC license (non-commercial); OncoKB terms of use (custom/non-commercial)
-- Ontologies: NCI Thesaurus (NCIt), OncoTree, Disease Ontology, EDAM; SPDX license list
+- Ontologies: **OncoTree (primary)**, NCI Thesaurus (NCIt), Disease Ontology, EDAM; SPDX license list
+- Sibling projects — `open-data-datasheets` (shared toolkit owner), `ewing-open-data-catalog` (consumer)
+- Competitive & improvement analysis — `COMPETITIVE-ANALYSIS.md` (basis for the v0.2 merge)
 
 ---
 
@@ -594,3 +812,59 @@ PLAN (and the companion TASKS.md). Each lists what changed and where.
 
 Sign-off: **Draft approved for circulation** (senior-staff-engineer + TPM drafting review). Not yet
 ratified by the Elyos board/community or by the (still-to-be-named) credentialed reviewers.
+
+---
+
+## Changelog — v0.2 (analysis merged)
+
+This version merges the findings of `COMPETITIVE-ANALYSIS.md` (analyst pass, 2026-06-29) into the plan.
+Changes are surgical/additive; no cancer guardrail was weakened, and no facts were invented. Web-cited
+claims trace to the analysis's Sources list.
+
+**Correctness / license / safety / schema fixes applied:**
+1. **cBioPortal license accuracy (§1A).** Added **ODC-ODbL (share-alike) as cBioPortal's stated default** to
+   the licensing matrix, the canonical `license` model (new `shareAlike` flag), the permits-derivatives
+   criterion, and output-licensing — and made the **CC-BY-vs-share-alike compatibility a required reviewer
+   ruling** (FLAG until ruled), replacing the prior "per-study TCGA-derived = open" understatement.
+2. **Croissant 1.1 DUO/PROV-O (§1B).** Retargeted the spec to **Croissant 1.1's DUO + PROV-O permission/
+   provenance layers** that natively encode access-tier/consent, with a required recorded decision + scheduled
+   bump if 1.0 is held transitionally; threaded into specVersions, dependencies, fixtures, M2, references.
+3. **Per-file/per-release tier (§1C).** Dropped the durable "masked somatic mutations = open" claim; tier is
+   now a **per-file, per-GDC-release re-checked attestation**; **CPTAC** leans cautious (controlled
+   components possible).
+4. **Upstream version DOI (§1F).** Added `provenance.upstreamVersionDoi` (DepMap per-quarter Figshare DOI,
+   GDC release-id) as a required, completeness-scored field; folded into M3 refresh.
+5. **Machine-enforced provenance (§1G).** Added a **citation-coverage lint** (assertion count == citation
+   count) feeding the completeness score; **redefined the before-score** against the source portal's
+   *existing* metadata (GDC fields / GEO MIAME), not against nothing.
+6. **Small-cell over-exclusion (§1 minor).** Added a **suppression-aware exception** so legitimately-open
+   aggregate count tables that trip k≥5 route to documented review, not an auto-halt (individual-level still
+   always EXCLUDE).
+7. **Ontology ambiguity (§1 minor).** Fixed **OncoTree as the primary disease vocabulary**, NCIt/DO secondary.
+8. **Reuse contract / superset (§1D, §1E).** Declared an explicit **reuse contract**: reuse
+   `open-data-datasheets`'s shared canonical model / Croissant validator / inspection protocol; this project
+   is the **genomics superset**; `ewing-open-data-catalog` **consumes/links** these datasheets. No parallel
+   validator reimplementation; added a triplication-drift risk row.
+9. **Metric realism (§1H).** Conditioned the cumulative acceptance targets on the **License + Genomic-Privacy
+   reviewer being seated** and an acceptance channel existing.
+
+**Strategy integrated:**
+- New **## Competitive landscape & differentiation** section (NCI GDC/CRDC, cBioPortal, DepMap, GEO,
+  Kaggle, MLCommons Croissant, Data Nutrition, HF cards, Google Dataset Search, OmicsDI), with the
+  **two-part VERIFIED gate** (access-tier + identifiability + cited license clause = a committed,
+  auditable "safely-open + proof" verdict) as the differentiator no portal ships.
+- **Claude API leverage** folded into the architecture (narrative drafting with per-sentence provenance;
+  license-clause extraction → structured verdict **proposal** for human confirmation; schema→Croissant
+  mapping; cBioPortal clinical-field harmonization to OncoTree/NCIt) — with hard guardrails keeping
+  access-tier/license determinations **human-verified** and **never** ingesting controlled/identifiable data.
+- **Optimizations folded into the Roadmap** (M0: reuse contract, ODbL ruling, Croissant decision, citation
+  lint, version DOI, OncoTree; M2: harmonization + 1.1 emission; M3: version-DOI refresh + Google Dataset
+  Search distribution).
+- New **## Adjacent opportunities** section (shared verified-datasheet core, `open-cohort-catalog`,
+  `cancer-data-dictionaries`, verified-datasheet MCP server, gate-as-a-service, Nutrition-Label adapter).
+- **Open questions merged** (ODbL/CC-BY ruling, Croissant 1.0-vs-1.1, reuse contract ownership, ewing
+  boundary, small-cell exception, reviewer-gated targets).
+
+**Preserved:** all binding cancer guardrails (open/de-identified only; controlled-access dbGaP/EGA/DACO
+out of scope; per-source license verify; provenance-on-every-assertion; no medical advice / oncologist +
+advocate sign-off at `riskTier: high`), the vision, structure, and all valid v0.1 content (incl. Appendix A).

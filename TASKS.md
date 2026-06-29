@@ -1,6 +1,6 @@
 # TASKS — cancer-dataset-datasheets
 
-> Status: Draft · Version: 0.1.0 · Last updated: 2026-06-28 · Owner: TBD (maintainer) · Lane: donated
+> Status: Draft · Version: 0.2.0 · Last updated: 2026-06-29 · Owner: TBD (maintainer) · Lane: donated
 
 > **Binding cancer guardrails apply to every task below:** open-access / aggregate / de-identified data
 > only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient
@@ -52,15 +52,20 @@ Each task becomes an Elyos **Task JSON** validated against `packages/schema/src/
 
 - **template-003 (template + canonical model)**
   - [ ] Canonical metadata model documents every field in PLAN (source, accession, `accessTier`,
-        `license{...,permitsDerivatives,nonCommercial,citedClause}`, `provenance{...,requiredCitation,
-        gdsPolicyNote}`, `identifiability{individualLevel,germlinePresent,reIdentificationRisk,...}`,
+        `license{...,permitsDerivatives,nonCommercial,shareAlike,citedClause}`, `provenance{...,
+        upstreamVersionDoi,requiredCitation,gdsPolicyNote}`,
+        `identifiability{individualLevel,germlinePresent,reIdentificationRisk,...}`,
         `ontology`, `fields[]`, `provenanceCitations[]`, `patientFacing`, `completenessScore`).
   - [ ] Markdown template covers the Datasheets-for-Datasets questionnaire, provenance, license record,
         access-tier + identifiability assessment, data dictionary, known-issues, worked (synthetic) examples.
   - [ ] Encodes the **hard invariant**: any record with `accessTier != open` or
         `identifiability.individualLevel/germlinePresent == true` is rejected (cannot be authored).
-  - [ ] States the deliverable is documentation, not data; output licensed CC-BY-4.0; requires a
-        provenance citation per assertion.
+  - [ ] **Reuse contract** delivered: declares which components reuse `open-data-datasheets`'s shared
+        canonical model / Croissant validator / inspection protocol vs. cancer-specific extensions
+        (no parallel reimplementation); **OncoTree fixed as primary** disease vocabulary (NCIt/DO secondary).
+  - [ ] States the deliverable is documentation, not data; output licensed CC-BY-4.0 (**subject to the
+        ODbL/share-alike reviewer ruling for cBioPortal sources**); requires a provenance citation per
+        assertion, machine-checked by the **citation-coverage lint**.
 
 - **gate-004 (access-tier + identifiability + license gate)**
   - [ ] Access-tier check runs **first**: PASS only if open-access; any dbGaP/EGA/DACO/controlled/biobank
@@ -69,16 +74,26 @@ Each task becomes an Elyos **Task JSON** validated against `packages/schema/src/
         precision, linkage risk; any hit → EXCLUDE/halt. We never de-identify ourselves.
   - [ ] License check: objective criterion — PASS only if `permitsDerivatives: true` from a cited
         clause/URL; COSMIC/OncoKB/NC/custom → FLAG/escalate per `policy-006`; unclear → EXCLUDE.
+        **Share-alike (ODbL/cBioPortal) → record `shareAlike: true` and FLAG until the reviewer rules on
+        CC-BY-vs-share-alike compatibility** (never auto-PASS).
+  - [ ] **Suppression-aware small-cell exception:** a k<5 finding in an *aggregate, non-individual-level*
+        count table routes to documented review (publisher suppression/rounding confirmed), not an auto-halt;
+        individual-level/germline findings always EXCLUDE.
   - [ ] Inspection follows the bounded protocol (open-tier only, row cap, ephemeral, no committed samples).
   - [ ] Produces a committed PASS/FLAG/EXCLUDE artifact per dataset recording which checks ran and what
-        fired; ships a worked PASS example **and** a worked EXCLUDE example (a COSMIC entry).
+        fired; ships a worked PASS example, a worked EXCLUDE example (a COSMIC entry), **and a cBioPortal/ODbL
+        FLAG-until-ruled example**.
 
 - **license-matrix-005 (cancer-source licensing & access matrix)**
   - [ ] Each source (TCGA/GDC, GEO, cBioPortal, DepMap, COSMIC, OncoKB, ICGC/PCAWG, CPTAC, SEER) has a
         disposition with a **cited license URL + clause** and its open vs. controlled tier delineated.
+        **TCGA/GDC tier is per-file per-release** (no durable "masked somatic mutations = open"); **CPTAC
+        leans cautious** (controlled components possible).
   - [ ] COSMIC and OncoKB recorded as non-commercial/custom → flag/exclude from do-first; controlled
         tiers (dbGaP/EGA/DACO) recorded as out of scope.
-  - [ ] cBioPortal flagged as **per-study** verification (terms vary); DepMap flagged as per-release.
+  - [ ] **cBioPortal recorded with its ODC-ODbL (share-alike) stated default** + per-study verification
+        (terms vary) + the **CC-BY-vs-share-alike compatibility ruling** captured; DepMap flagged as
+        per-release **with the per-quarter version DOI pinned**.
   - [ ] Matrix versioned and scheduled for re-verification each milestone.
 
 - **pilot-010 (pilot dataset, end-to-end)**
@@ -88,9 +103,12 @@ Each task becomes an Elyos **Task JSON** validated against `packages/schema/src/
   - [ ] Passed `gate-004` (open tier confirmed; no individual-level/germline/re-identifiable content;
         license permits derivatives with cited clause) with the artifact committed.
   - [ ] Complete data dictionary, access-tier + identifiability assessment, Datasheet, and valid Croissant
-        metadata produced; **every assertion carries a provenance citation**; completeness ≥ 90/100.
-  - [ ] Provenance recorded (repository, accession, retrieval date, release/freeze, attribution, required
-        dataset citation, GDS note; license snapshot = committed copy + SHA-256 + Wayback URL).
+        metadata produced; **every assertion carries a provenance citation** (verified by the citation-coverage
+        lint); completeness ≥ 90/100 with the **before-score taken against the source portal's existing
+        metadata** (GDC fields / GEO MIAME), not against nothing.
+  - [ ] Provenance recorded (repository, accession, retrieval date, release/freeze, **upstream version
+        DOI/release-id**, attribution, required dataset citation, GDS note; license snapshot = committed copy
+        + SHA-256 + Wayback URL).
   - [ ] Documentation **accepted** via informal channel or Zenodo DOI with the Steward's acceptance
         artifact (`outcomes/<dataset-id>.json`) recorded — or **submitted** with the blocker surfaced.
 
@@ -116,9 +134,13 @@ with the blocker surfaced; ≥ 1 steward-outreach thread opened; **0** privacy/s
 
 - **scanner-016 (germline / identifiability scanner)**
   - [ ] Detects and halts on individual-level genotypes, germline variant calls, raw sequence references,
-        person-linked sample identifiers, day-precision DOB/DOD, and k<5 quasi-identifier classes.
-  - [ ] Ships committed synthetic golden fixtures that must trip each rule + clean fixtures that must pass,
-        exercised in CI (no real inspected data committed).
+        person-linked sample identifiers, day-precision DOB/DOD, and k<5 quasi-identifier classes — but routes
+        a k<5 finding in an **aggregate, non-individual-level count table** to the documented
+        **suppression-aware review exception** (not an auto-halt) so legitimately-open small-cell summaries
+        are not over-EXCLUDED.
+  - [ ] Ships committed synthetic golden fixtures that must trip each rule + clean fixtures that must pass
+        **+ an aggregate small-cell fixture exercising the suppression-aware exception**, exercised in CI
+        (no real inspected data committed).
   - [ ] Code MIT-licensed; `pnpm build && pnpm test && pnpm lint` green; DCO signed-off; no credentials.
 
 - **triage-011 (triage 5 candidates)**
@@ -161,9 +183,12 @@ SHA-256 + Wayback); **0** privacy/safety errors (any occurrence halts the milest
   - [ ] Accepted upstream (acceptance artifact) — or submitted with blocker surfaced.
 
 - **cbio-018 (cBioPortal study)**
-  - [ ] **Per-study license verified** with cited clause (terms vary per study); TCGA-derived/open studies
-        preferred; any non-open study EXCLUDED.
-  - [ ] Datasheet + Croissant produced; provenance + required citation recorded; completeness ≥ 90/100.
+  - [ ] **Per-study license verified** with cited clause — record the **ODbL (share-alike) default unless the
+        study notes otherwise**, set `shareAlike`, and confirm the **CC-BY-vs-share-alike compatibility ruling**;
+        TCGA-derived/open studies preferred; any non-open or un-ruled-share-alike study EXCLUDED/FLAGGED.
+  - [ ] **Heterogeneous clinical fields harmonized to OncoTree/NCIt** (the documented "arbitrary terms for
+        identical entities" problem); Datasheet + Croissant produced; provenance + required citation recorded;
+        completeness ≥ 90/100.
   - [ ] Delivered via a GitHub PR to the study/metadata repo (acceptance = merge commit) or steward channel.
 
 - **scale-020 (datasets #6–#8)**
@@ -300,9 +325,13 @@ lives in the JSON):
   flagged/escalated and never treated as open; document-only, never host/mirror/redistribute the data;
   objective FLAG-vs-EXCLUDE rule with worked examples; versioned and cross-referenced from `license-matrix-005`/`gate-004`.
 - **croissant-007 (Croissant generator + validator)** — emits valid Croissant ML (JSON-LD) from a datasheet
-  conforming to the canonical model; spec validator fails on non-conformance; golden fixtures green in CI; MIT, DCO, no secrets.
-- **provenance-008 (provenance + snapshot tool)** — captures repository/accession/retrieval-date/release/citation/GDS
-  note; license snapshot = committed copy + SHA-256 + Wayback URL; fixtures green in CI; MIT, DCO, no secrets.
+  conforming to the canonical model; **targets Croissant 1.1 (DUO/PROV-O permission+provenance layers) to emit
+  access-tier/consent as ontology terms, or records why 1.0 is held transitionally + schedules the bump**; spec
+  validator fails on non-conformance; **reuses `open-data-datasheets`'s validator rather than forking it**;
+  golden fixtures green in CI; MIT, DCO, no secrets.
+- **provenance-008 (provenance + snapshot tool)** — captures repository/accession/retrieval-date/release/**upstream
+  version DOI/release-id**/citation/GDS note; license snapshot = committed copy + SHA-256 + Wayback URL; fixtures
+  green in CI; MIT, DCO, no secrets.
 - **outreach-009 (steward outreach + shortlist)** — open-access-only candidate shortlist with acceptance channels;
   ≥ 1 outreach thread (or documented plan with TO-BE-SECURED stewards); no guardrail-violating candidate; `verifiedNeed` stays false until confirmed.
 - **doc-012 / doc-013 (DepMap / open GEO datasheets)** — open-tier + license verified; passed `gate-004`; full data
