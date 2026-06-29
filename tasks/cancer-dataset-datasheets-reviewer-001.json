@@ -1,0 +1,34 @@
+{
+  "id": "cancer-dataset-datasheets-reviewer-001",
+  "title": "Name/secure the License + Genomic-Privacy reviewer (blocking gate role)",
+  "project": "cancer-dataset-datasheets",
+  "type": "research",
+  "lane": "donated",
+  "priority": "high",
+  "domain": ["cancer-research", "open-science", "bioinformatics", "data-governance"],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "small",
+  "status": "open",
+  "context": "This project documents only open-access, aggregate/de-identified cancer datasets (TCGA via GDC, GEO, cBioPortal, DepMap). Controlled-access data (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are out of scope, and COSMIC/OncoKB are non-commercial/custom-licensed. Because the central safety control is a non-skippable access-tier + identifiability + license gate, a qualified reviewer must own that gate before any dataset is documented. Until this role is filled, no dataset can pass the gate and all tasks remain verifiedNeed:false.",
+  "objective": "Identify and secure a named, qualified License + Genomic-Privacy reviewer (with a documented qualification to read NIH GDS / dbGaP-EGA access models and open/non-commercial licenses and to apply the identifiability methodology), and record the appointment and rotation plan in PLAN.md Governance.",
+  "acceptanceCriteria": [
+    "At least one named reviewer is secured, with a recorded qualification covering genomic data-sharing policy (NIH GDS), controlled- vs open-access tiers (dbGaP/EGA/DACO), and open/non-commercial license interpretation (CC, COSMIC, OncoKB, custom).",
+    "The reviewer's responsibilities are documented: access-tier check first, identifiability/germline check, then license check with cited permitsDerivatives; authority to EXCLUDE/FLAG.",
+    "A rotation plan ensures at least one qualified reviewer is always available, or triage/documentation halts.",
+    "PLAN.md Governance section is updated with the named reviewer (or explicit TO BE SECURED status) and the appointment is dated.",
+    "It is explicitly recorded that no dataset passes the gate and all tasks stay verifiedNeed:false until this role is filled."
+  ],
+  "resources": [
+    "C:\\Users\\jason\\AppData\\Local\\Temp\\claude\\C--code-elyos\\5eca0d44-6b8b-4c30-9696-37a524cb249a\\scratchpad\\plans\\cancer-dataset-datasheets\\PLAN.md",
+    "C:\\code\\elyos\\docs\\good-deed-definition.md",
+    "C:\\code\\elyos\\planning\\ROADMAP.md",
+    "NIH Genomic Data Sharing (GDS) policy",
+    "NCI Genomic Data Commons (GDC) data access policies"
+  ],
+  "output": "A short governance document naming (or marking TO BE SECURED) the License + Genomic-Privacy reviewer, their qualification, responsibilities, and rotation plan, committed to the project and reflected in PLAN.md.",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}
