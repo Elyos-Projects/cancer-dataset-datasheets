@@ -1,0 +1,31 @@
+{
+  "id": "cancer-dataset-datasheets-i18n-029",
+  "title": "Translate a delivered datasheet (domain reviewer)",
+  "project": "cancer-dataset-datasheets",
+  "type": "writing",
+  "lane": "donated",
+  "priority": "low",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "translation",
+  "tokenEstimate": "small",
+  "status": "open",
+  "context": "Widens reuse by translating one already-delivered datasheet, reviewed by a bilingual domain reviewer. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. The target language is not enumerated in the plan, so this stays a single representative task that fans out only when a bilingual reviewer/language is confirmed. The translation must carry the same provenance and not relicense copyrighted source.",
+  "objective": "Translate one delivered datasheet into a confirmed target language with bilingual domain-reviewer sign-off, preserving provenance and source-compatible licensing.",
+  "acceptanceCriteria": [
+    "Source is an already-delivered/accepted datasheet; the target language is set by a confirmed bilingual domain reviewer (no language fabricated in advance).",
+    "Translation is reviewed and signed off by a bilingual domain reviewer for accuracy of cancer/data terminology.",
+    "Provenance citations and access-tier/license records are preserved; the translation is licensed source-compatibly (never relicensing copyrighted source as CC-BY).",
+    "No new claims are introduced in translation; guardrails (no medical advice; open-access only) are retained."
+  ],
+  "output": "/output/translations/<dataset-id>.<lang>.md",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "source-compatible (matches the source datasheet license; never relicense copyrighted source as CC-BY)"
+}

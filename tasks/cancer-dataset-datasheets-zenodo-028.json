@@ -1,0 +1,30 @@
+{
+  "id": "cancer-dataset-datasheets-zenodo-028",
+  "title": "Zenodo metadata adapter + DOI provenance",
+  "project": "cancer-dataset-datasheets",
+  "type": "code",
+  "lane": "donated",
+  "priority": "low",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "software"
+  ],
+  "riskTier": "low",
+  "urgent": false,
+  "deliverable": "pr",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "A self-serve archive acceptance channel: an adapter that maps a datasheet to Zenodo deposition metadata and records the version DOI as provenance. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Code is MIT-licensed; deposits metadata/documentation only, never the dataset itself.",
+  "objective": "Build a Zenodo metadata adapter that emits Zenodo deposition metadata from a datasheet and records the published version DOI as provenance.",
+  "acceptanceCriteria": [
+    "Adapter maps the canonical metadata model to valid Zenodo deposition metadata (documentation only; never the dataset itself).",
+    "Records the published version DOI into the dataset's provenance/outcome artifact as the acceptance evidence.",
+    "Committed fixtures exercise the adapter in CI; code MIT-licensed; pnpm build && pnpm test && pnpm lint green; DCO signed-off; no credentials committed."
+  ],
+  "output": "/tools/zenodo-adapter/",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "MIT"
+}

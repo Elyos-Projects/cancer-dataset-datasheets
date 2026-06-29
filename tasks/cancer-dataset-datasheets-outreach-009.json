@@ -1,0 +1,31 @@
+{
+  "id": "cancer-dataset-datasheets-outreach-009",
+  "title": "Steward/partner outreach + open-access candidate shortlist",
+  "project": "cancer-dataset-datasheets",
+  "type": "research",
+  "lane": "donated",
+  "priority": "medium",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "low",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "small",
+  "status": "open",
+  "context": "Identifies a shortlist of open-access candidate datasets and the stewards/maintainers/labs who could accept contributed documentation. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Until a partner confirms, all tasks remain verifiedNeed:false; depends on the licensing matrix.",
+  "objective": "Produce an open-access candidate shortlist and an outreach plan/thread to secure a contribution steward, grounded in the licensing matrix.",
+  "acceptanceCriteria": [
+    "A shortlist of open-access candidate datasets (drawn only from sources the license-matrix dispositions as open) with the prospective acceptance channel for each.",
+    "At least one steward-outreach thread opened (or a documented outreach plan with named prospective stewards marked TO BE SECURED).",
+    "No candidate violates the cancer guardrails (no controlled-access, identifiable, or NC/custom-only sources in the do-first shortlist).",
+    "Records that verifiedNeed stays false until a steward confirms acceptance."
+  ],
+  "output": "/docs/steward-outreach-shortlist.md",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

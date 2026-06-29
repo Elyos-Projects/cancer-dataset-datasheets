@@ -1,0 +1,31 @@
+{
+  "id": "cancer-dataset-datasheets-tcga-017",
+  "title": "Datasheet for a TCGA open-tier dataset (via GDC)",
+  "project": "cancer-dataset-datasheets",
+  "type": "data",
+  "lane": "donated",
+  "priority": "medium",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "Datasheet for a TCGA open-access file obtained via the GDC (e.g. gene expression, copy-number, masked somatic mutations, or de-identified clinical). Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Never controlled-access/dbGaP/germline; depends on the gate, Croissant generator, and scanner.",
+  "objective": "Produce a complete, gate-passed, provenance-backed datasheet for a TCGA GDC open-tier dataset and get it accepted (or submitted with the blocker surfaced).",
+  "acceptanceCriteria": [
+    "Gate confirms the file is GDC open-access (e.g. gene expression / copy-number / masked somatic mutations / de-identified clinical) -- never controlled-access/dbGaP/germline.",
+    "Required TCGA citation + GDS-policy note recorded in provenance; license/attribution per GDC terms.",
+    "Complete data dictionary (with NCIt/OncoTree codes where applicable) + Datasheet + valid Croissant; completeness >= 90/100; provenance citation per assertion.",
+    "Accepted upstream (acceptance artifact) -- or submitted with blocker surfaced."
+  ],
+  "output": "/output/tcga-<dataset>/ + outcomes/tcga-<dataset>.json",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

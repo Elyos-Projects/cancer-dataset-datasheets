@@ -1,0 +1,31 @@
+{
+  "id": "cancer-dataset-datasheets-croissant-007",
+  "title": "Croissant ML metadata generator + spec validator",
+  "project": "cancer-dataset-datasheets",
+  "type": "code",
+  "lane": "donated",
+  "priority": "medium",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "software"
+  ],
+  "riskTier": "low",
+  "urgent": false,
+  "deliverable": "pr",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "Tooling that emits Croissant ML metadata (JSON-LD) from a datasheet and validates it against the spec. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Operates only on datasheet metadata (never on data); code is MIT-licensed and must pass build/test/lint in CI.",
+  "objective": "Build a Croissant ML metadata generator plus a spec validator with golden fixtures, green in CI.",
+  "acceptanceCriteria": [
+    "Generator emits valid Croissant ML (JSON-LD) metadata from a datasheet conforming to the canonical metadata model (template-003).",
+    "Spec validator checks emitted Croissant against the Croissant schema and fails on non-conformance.",
+    "Committed golden fixtures exercise generator + validator in CI; no real inspected data is committed.",
+    "Code MIT-licensed; pnpm build && pnpm test && pnpm lint green; DCO signed-off; no credentials or secrets."
+  ],
+  "output": "/tools/croissant/ (generator + spec validator)",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "MIT"
+}

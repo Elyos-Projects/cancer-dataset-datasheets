@@ -1,0 +1,31 @@
+{
+  "id": "cancer-dataset-datasheets-policy-006",
+  "title": "NC/custom-license + redistribution policy (COSMIC/OncoKB handling)",
+  "project": "cancer-dataset-datasheets",
+  "type": "design-spec",
+  "lane": "donated",
+  "priority": "medium",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "data-governance",
+    "bioinformatics"
+  ],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "small",
+  "status": "open",
+  "context": "Defines how non-commercial/custom-licensed sources (notably COSMIC and OncoKB) and redistribution are handled so the gate's license check is objective and consistent. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Depends on the licensing matrix.",
+  "objective": "Document the NC/custom-license and redistribution policy that the gate's license check escalates to, including when a source is FLAGGED vs EXCLUDED.",
+  "acceptanceCriteria": [
+    "Policy states COSMIC and OncoKB (and any NC/custom-licensed source) are flagged/escalated and never treated as open or admitted to the do-first pool.",
+    "Defines redistribution rules: we document but never host/mirror/redistribute the data itself; only license-text snapshots and cited clauses are captured.",
+    "Gives the objective FLAG vs EXCLUDE decision rule the gate's license check cites, with worked examples.",
+    "Policy is versioned and cross-referenced from license-matrix-005 and gate-004."
+  ],
+  "output": "/docs/nc-custom-license-policy.md",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

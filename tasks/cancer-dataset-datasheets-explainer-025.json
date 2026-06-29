@@ -1,0 +1,30 @@
+{
+  "id": "cancer-dataset-datasheets-explainer-025",
+  "title": "Plain-language \"what this dataset is\" explainer for an accepted datasheet",
+  "project": "cancer-dataset-datasheets",
+  "type": "writing",
+  "lane": "donated",
+  "priority": "high",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "high",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "A plain-language, education-only explainer built strictly from an already-accepted datasheet. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. riskTier:high -- no clinical/treatment/prognostic guidance, no biomarker/efficacy claims, no rankings; requires oncologist + patient-advocate sign-off and a 'not medical advice' banner. Depends on onco-reviewer-024 and an accepted datasheet.",
+  "objective": "Write a plain-language 'what this dataset is' explainer for one accepted datasheet, education-only, with the required sign-off and banner before merge.",
+  "acceptanceCriteria": [
+    "Built only from an already-accepted datasheet; education only -- no clinical/treatment/prognostic guidance, no biomarker/efficacy claims, no rankings.",
+    "Carries a prominent 'not medical advice' banner and links to the source datasheet + dataset.",
+    "Oncologist + patient-advocate sign-off recorded before merge (riskTier: high); advocate readability check passed; provenance citation per assertion retained."
+  ],
+  "output": "/output/explainers/<dataset-id>.md",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "cancer-dataset-datasheets-doc-013",
+  "title": "Datasheet for accepted dataset #3 (open GEO series)",
+  "project": "cancer-dataset-datasheets",
+  "type": "data",
+  "lane": "donated",
+  "priority": "medium",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "Third end-to-end datasheet, for an open GEO series. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Depends on the pilot pipeline and triage; only open GEO series (no controlled or identifiable content) are eligible.",
+  "objective": "Produce a complete, gate-passed, provenance-backed datasheet for an open GEO series and get it accepted (or submitted with the blocker surfaced).",
+  "acceptanceCriteria": [
+    "Dataset is an open GEO series confirmed open-access (no controlled-access or individual-level/germline content) with license/terms cited; passed gate-004 with the artifact committed.",
+    "Complete data dictionary, access-tier + identifiability assessment, Datasheet, and valid Croissant produced; every assertion carries a provenance citation; completeness >= 90/100.",
+    "Provenance + license snapshot recorded (committed copy + SHA-256 + Wayback URL), including the required GEO/series citation.",
+    "Documentation accepted via the GEO/NCBI submitter or curator channel with the acceptance artifact (outcomes/<dataset-id>.json) recorded -- or submitted with the blocker surfaced."
+  ],
+  "output": "/output/geo-<series>/ + outcomes/geo-<series>.json",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

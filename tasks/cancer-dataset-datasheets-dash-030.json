@@ -1,0 +1,30 @@
+{
+  "id": "cancer-dataset-datasheets-dash-030",
+  "title": "Outcome dashboard for accepted docs + reuse events",
+  "project": "cancer-dataset-datasheets",
+  "type": "code",
+  "lane": "donated",
+  "priority": "low",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "software"
+  ],
+  "riskTier": "low",
+  "urgent": false,
+  "deliverable": "pr",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "A dashboard that reads the outcome ledger and surfaces accepted documentation and verified reuse events to support the project's outcome-based success metrics. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Code is MIT-licensed; reads only committed ledger/outcome artifacts, never inspected data.",
+  "objective": "Build an outcome dashboard that reads the outcome ledger and displays accepted datasheets and verified external reuse events.",
+  "acceptanceCriteria": [
+    "Dashboard reads the committed outcome ledger / outcomes/<dataset-id>.json artifacts and lists accepted documentation and verified reuse events.",
+    "Surfaces the project success metrics (accepted count per source, reuse events, completeness, effort trend) from verifiable evidence only.",
+    "Code MIT-licensed; pnpm build && pnpm test && pnpm lint green with fixtures; DCO signed-off; no credentials or inspected data committed."
+  ],
+  "output": "/tools/dashboard/",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "MIT"
+}

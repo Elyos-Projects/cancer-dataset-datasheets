@@ -1,0 +1,31 @@
+{
+  "id": "cancer-dataset-datasheets-template-003",
+  "title": "Cancer-dataset datasheet template + canonical metadata model",
+  "project": "cancer-dataset-datasheets",
+  "type": "writing",
+  "lane": "donated",
+  "priority": "high",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "low",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "small",
+  "status": "open",
+  "context": "Foundational deliverable for the project: a reusable datasheet template plus the canonical metadata model every dataset record must populate. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. The deliverable is documentation, not data, and is licensed CC-BY-4.0.",
+  "objective": "Author the cancer-dataset datasheet Markdown template and the canonical metadata model documenting every required field, encoding the hard open-access/identifiability invariant.",
+  "acceptanceCriteria": [
+    "Canonical metadata model documents every field in PLAN (source, accession, accessTier, license{...,permitsDerivatives,nonCommercial,citedClause}, provenance{...,requiredCitation,gdsPolicyNote}, identifiability{individualLevel,germlinePresent,reIdentificationRisk,...}, ontology, fields[], provenanceCitations[], patientFacing, completenessScore).",
+    "Markdown template covers the Datasheets-for-Datasets questionnaire, provenance, license record, access-tier + identifiability assessment, data dictionary, known-issues, worked (synthetic) examples.",
+    "Encodes the hard invariant: any record with accessTier != open or identifiability.individualLevel/germlinePresent == true is rejected (cannot be authored).",
+    "States the deliverable is documentation, not data; output licensed CC-BY-4.0; requires a provenance citation per assertion."
+  ],
+  "output": "/datasheets/TEMPLATE.md and /docs/canonical-metadata-model.md",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "cancer-dataset-datasheets-cptac-026",
+  "title": "Datasheet for an open CPTAC proteomics dataset",
+  "project": "cancer-dataset-datasheets",
+  "type": "data",
+  "lane": "donated",
+  "priority": "low",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "Extends coverage to proteomics with an open CPTAC dataset. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Open tier must be verified before any documentation; controlled or identifiable CPTAC content is out of scope.",
+  "objective": "Produce a gate-passed, provenance-backed datasheet for an open-tier CPTAC proteomics dataset and get it accepted (or submitted with the blocker surfaced).",
+  "acceptanceCriteria": [
+    "CPTAC dataset confirmed open-access with cited license/terms (open tier verified); passed gate-004 with the artifact committed; controlled/identifiable content excluded.",
+    "Complete data dictionary + access-tier + identifiability assessment + Datasheet + valid Croissant; completeness >= 90/100; provenance citation per assertion.",
+    "Provenance + license snapshot recorded (committed copy + SHA-256 + Wayback URL), including the required CPTAC citation.",
+    "Accepted upstream with acceptance artifact -- or submitted with the blocker surfaced."
+  ],
+  "output": "/output/cptac-<dataset>/ + outcomes/cptac-<dataset>.json",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

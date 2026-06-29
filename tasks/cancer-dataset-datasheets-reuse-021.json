@@ -1,0 +1,28 @@
+{
+  "id": "cancer-dataset-datasheets-reuse-021",
+  "title": "Track and verify external reuse events",
+  "project": "cancer-dataset-datasheets",
+  "type": "research",
+  "lane": "donated",
+  "priority": "medium",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "low",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "small",
+  "status": "open",
+  "context": "Tracks and verifies external reuse of the delivered datasheets, since success is measured by reuse, not documents written. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Reuse must be externally verifiable; self-reported reuse does not count. Depends on the delivered datasheets.",
+  "objective": "Record and verify at least two external reuse events, each linked to externally verifiable evidence.",
+  "acceptanceCriteria": [
+    ">= 2 verifiable external reuse events recorded (citation / portal acceptance / merged PR / DOI reference); each links to externally verifiable evidence (no self-reported reuse)."
+  ],
+  "output": "/docs/reuse-events.md",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

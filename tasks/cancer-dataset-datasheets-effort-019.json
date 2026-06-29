@@ -1,0 +1,30 @@
+{
+  "id": "cancer-dataset-datasheets-effort-019",
+  "title": "Effort/throughput instrumentation in the outcome ledger",
+  "project": "cancer-dataset-datasheets",
+  "type": "code",
+  "lane": "donated",
+  "priority": "low",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "software"
+  ],
+  "riskTier": "low",
+  "urgent": false,
+  "deliverable": "pr",
+  "tokenEstimate": "small",
+  "status": "open",
+  "context": "Instruments per-dataset effort/throughput in the outcome ledger so the project can show a measurable reduction in median per-dataset effort vs. the M0/M1 baseline. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Code is MIT-licensed; records only effort metrics, never inspected data.",
+  "objective": "Add effort/throughput instrumentation to the outcome ledger that logs per-dataset effort and reports median reduction vs. baseline.",
+  "acceptanceCriteria": [
+    "Outcome ledger records per-dataset effort/throughput metrics in a committed, machine-readable form (no inspected data or secrets).",
+    "Reports the median per-dataset effort and the reduction vs. the recorded M0/M1 baseline.",
+    "Code MIT-licensed; pnpm build && pnpm test && pnpm lint green with fixtures; DCO signed-off."
+  ],
+  "output": "/tools/outcome-ledger/ (effort instrumentation)",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "MIT"
+}

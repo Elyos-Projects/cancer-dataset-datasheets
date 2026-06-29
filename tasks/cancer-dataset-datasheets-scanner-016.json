@@ -1,0 +1,30 @@
+{
+  "id": "cancer-dataset-datasheets-scanner-016",
+  "title": "Germline / identifiability scanner for inspection",
+  "project": "cancer-dataset-datasheets",
+  "type": "code",
+  "lane": "donated",
+  "priority": "high",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "software"
+  ],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "pr",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "The scanner the gate's identifiability check relies on: it halts inspection on any individual-level or re-identifiable signal. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Runs only under the bounded inspection protocol; code is MIT-licensed and exercised on synthetic fixtures only.",
+  "objective": "Build the germline / identifiability scanner that detects and halts on individual-level or re-identifiable signals, with synthetic golden fixtures in CI.",
+  "acceptanceCriteria": [
+    "Detects and halts on individual-level genotypes, germline variant calls, raw sequence references, person-linked sample identifiers, day-precision DOB/DOD, and k<5 quasi-identifier classes.",
+    "Ships committed synthetic golden fixtures that must trip each rule + clean fixtures that must pass, exercised in CI (no real inspected data committed).",
+    "Code MIT-licensed; pnpm build && pnpm test && pnpm lint green; DCO signed-off; no credentials."
+  ],
+  "output": "/tools/identifiability-scanner/",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "MIT"
+}

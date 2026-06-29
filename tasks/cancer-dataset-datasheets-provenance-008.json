@@ -1,0 +1,31 @@
+{
+  "id": "cancer-dataset-datasheets-provenance-008",
+  "title": "Provenance + license-text snapshot capture tool",
+  "project": "cancer-dataset-datasheets",
+  "type": "code",
+  "lane": "donated",
+  "priority": "medium",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "software"
+  ],
+  "riskTier": "low",
+  "urgent": false,
+  "deliverable": "pr",
+  "tokenEstimate": "small",
+  "status": "open",
+  "context": "Tooling that captures a provenance record and an immutable license-text snapshot (committed copy + SHA-256 + Wayback URL) for each documented dataset. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Code is MIT-licensed and must be green in CI.",
+  "objective": "Build the provenance + license-text snapshot capture tool that records repository, accession, retrieval date, release/freeze, required citation, GDS note, and a verifiable license snapshot.",
+  "acceptanceCriteria": [
+    "Captures a provenance record: repository, accession, retrieval date, release/freeze, attribution, required dataset citation, and GDS-policy note.",
+    "Produces a license snapshot = committed copy of the license text + its SHA-256 + a Wayback (archive) URL.",
+    "Committed golden fixtures exercise the tool in CI; no real inspected data is committed.",
+    "Code MIT-licensed; pnpm build && pnpm test && pnpm lint green; DCO signed-off; no credentials or secrets."
+  ],
+  "output": "/tools/provenance-snapshot/",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "MIT"
+}
