@@ -1,0 +1,31 @@
+{
+  "id": "cancer-dataset-datasheets-license-matrix-005",
+  "title": "Cancer-source licensing & access matrix (TCGA/GDC, GEO, cBioPortal, DepMap, COSMIC, OncoKB, ICGC, CPTAC, SEER)",
+  "project": "cancer-dataset-datasheets",
+  "type": "research",
+  "lane": "donated",
+  "priority": "high",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "data-governance",
+    "bioinformatics"
+  ],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "The funnel that decides which cancer sources are eligible for the do-first pool. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Each source needs a cited license URL + clause and an open-vs-controlled tier delineation; the matrix is versioned and re-verified each milestone.",
+  "objective": "Produce a source-cited cancer licensing & access matrix dispositioning every listed source by access tier and derivative-permission, flagging NC/custom and controlled tiers.",
+  "acceptanceCriteria": [
+    "Each source (TCGA/GDC, GEO, cBioPortal, DepMap, COSMIC, OncoKB, ICGC/PCAWG, CPTAC, SEER) has a disposition with a cited license URL + clause and its open vs. controlled tier delineated.",
+    "COSMIC and OncoKB recorded as non-commercial/custom -> flag/exclude from do-first; controlled tiers (dbGaP/EGA/DACO) recorded as out of scope.",
+    "cBioPortal flagged as per-study verification (terms vary); DepMap flagged as per-release.",
+    "Matrix versioned and scheduled for re-verification each milestone."
+  ],
+  "output": "/docs/license-access-matrix.md",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

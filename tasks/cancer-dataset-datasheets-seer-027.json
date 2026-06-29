@@ -1,0 +1,31 @@
+{
+  "id": "cancer-dataset-datasheets-seer-027",
+  "title": "Datasheet for SEER aggregate incidence statistics",
+  "project": "cancer-dataset-datasheets",
+  "type": "data",
+  "lane": "donated",
+  "priority": "low",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "Documents SEER aggregate incidence statistics only. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Individual-level SEER research data is OUT OF SCOPE; only published aggregate statistics are eligible.",
+  "objective": "Produce a gate-passed, provenance-backed datasheet for SEER aggregate incidence statistics and get it accepted (or submitted with the blocker surfaced).",
+  "acceptanceCriteria": [
+    "Only SEER aggregate/published incidence statistics are documented; individual-level SEER research data is EXCLUDED; access tier and aggregate nature confirmed at the gate.",
+    "Complete data dictionary + access-tier + identifiability assessment + Datasheet + valid Croissant; completeness >= 90/100; provenance citation per assertion.",
+    "Provenance + license snapshot recorded (committed copy + SHA-256 + Wayback URL), including the required SEER citation and use terms.",
+    "Accepted upstream with acceptance artifact -- or submitted with the blocker surfaced."
+  ],
+  "output": "/output/seer-<statistic>/ + outcomes/seer-<statistic>.json",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

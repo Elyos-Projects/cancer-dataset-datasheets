@@ -280,9 +280,70 @@ explainers shipped without sign-off.
 
 ## Task count & coverage
 
-- **25 scheduled tasks** across M0–M4 (M0: 9 · M1: 5 · M2: 4 · M3: 3 · M4: 2) + **5 backlog tasks** = 30 total.
+- **23 scheduled tasks** across M0–M4 (M0: 9 · M1: 5 · M2: 4 · M3: 3 · M4: 2) + **5 backlog tasks** = **28 total**,
+  each now materialized as a schema-valid `tasks/<id>.json` (see *Generated task index* below).
 - Type mix: research, writing, design-spec, code, data, maintenance, translation — all `deliverable` ∈
   {`pr`, `document`, `translation`}; **never** `dataset` (data is out of scope).
 - All tasks `lane: donated`, `verifiedNeed: false`, `requestor: TO BE SECURED` until a partner is confirmed.
 - Patient-facing tasks (`explainer-025`, `onco-reviewer-024`) are `riskTier: high` and gated behind
   oncologist + patient-advocate sign-off; all other cancer-data tasks are `riskTier: medium` or `low`.
+
+---
+
+## Acceptance criteria — remaining tasks
+
+The milestone tables above carry full acceptance bullets for the "key tasks"; the remaining rows now
+carry their checkable criteria in `tasks/<id>.json`. Summarized here for reference (authoritative copy
+lives in the JSON):
+
+- **policy-006 (NC/custom-license + redistribution policy)** — COSMIC/OncoKB and any NC/custom source are
+  flagged/escalated and never treated as open; document-only, never host/mirror/redistribute the data;
+  objective FLAG-vs-EXCLUDE rule with worked examples; versioned and cross-referenced from `license-matrix-005`/`gate-004`.
+- **croissant-007 (Croissant generator + validator)** — emits valid Croissant ML (JSON-LD) from a datasheet
+  conforming to the canonical model; spec validator fails on non-conformance; golden fixtures green in CI; MIT, DCO, no secrets.
+- **provenance-008 (provenance + snapshot tool)** — captures repository/accession/retrieval-date/release/citation/GDS
+  note; license snapshot = committed copy + SHA-256 + Wayback URL; fixtures green in CI; MIT, DCO, no secrets.
+- **outreach-009 (steward outreach + shortlist)** — open-access-only candidate shortlist with acceptance channels;
+  ≥ 1 outreach thread (or documented plan with TO-BE-SECURED stewards); no guardrail-violating candidate; `verifiedNeed` stays false until confirmed.
+- **doc-012 / doc-013 (DepMap / open GEO datasheets)** — open-tier + license verified; passed `gate-004`; full data
+  dictionary + assessment + Datasheet + valid Croissant; completeness ≥ 90/100; provenance + snapshot recorded; accepted via the source channel (artifact) or submitted with blocker surfaced.
+- **effort-019 (effort instrumentation)** — outcome ledger records per-dataset effort; reports median + reduction vs.
+  M0/M1 baseline; MIT, CI green, DCO, no secrets.
+- **matrix-recheck-023 (licensing-matrix re-verify)** — each disposition re-checked vs. current cited clause/URL;
+  version + date bumped; changes propagated to `gate-004`/`policy-006`; COSMIC/OncoKB + controlled tiers stay flagged/out-of-scope.
+- **onco-reviewer-024 (oncologist + advocate panel)** — named oncologist + patient-advocate secured (or TO BE SECURED);
+  sign-off hard gate documented; "not medical advice" framing ratified; PLAN.md Governance dated; no explainer starts until filled.
+- **cptac-026 / seer-027 (CPTAC proteomics / SEER aggregate)** — open tier verified (SEER **aggregate only**;
+  individual-level OUT OF SCOPE); passed `gate-004`; full datasheet + Croissant; completeness ≥ 90/100; provenance + snapshot + required citation; accepted upstream or submitted with blocker.
+- **zenodo-028 (Zenodo adapter + DOI provenance)** — maps canonical model to valid Zenodo deposition metadata
+  (documentation only); records version DOI as acceptance evidence; fixtures green in CI; MIT, DCO, no secrets.
+- **i18n-029 (translate a delivered datasheet)** — source is an already-delivered datasheet; bilingual domain-reviewer
+  sign-off; provenance/license records preserved; **source-compatible license (never relicense copyrighted source as CC-BY)**; no new claims; guardrails retained.
+- **dash-030 (outcome dashboard)** — reads the committed outcome ledger / `outcomes/<dataset-id>.json`; surfaces
+  accepted-count-per-source / reuse / completeness / effort from verifiable evidence only; MIT, CI green, DCO, no inspected data committed.
+
+## Fan-out notes
+
+- Per-dataset rows (`pilot-010`, `doc-012`, `doc-013`, `tcga-017`, `cbio-018`, `cptac-026`, `seer-027`) are kept as
+  **one representative task each** — the concrete datasets are selected at triage and are **not enumerated** in
+  PLAN/TASKS, so none are fabricated. They expand to additional `tasks/*.json` only when a specific open-access
+  dataset is confirmed through `gate-004`.
+- `scale-020` (datasets #6–#8) stays a **single bounded task**; it fans out into per-dataset JSONs only once the
+  specific sources to complete TCGA/GDC · GEO · cBioPortal · DepMap coverage are chosen at triage.
+- `i18n-029` (translation) stays a **single representative task**; no target language is invented in advance —
+  it expands when a bilingual domain reviewer/language is confirmed.
+- No dimension in PLAN/TASKS is explicitly enumerated for mechanical fan-out, so the generated set is **one JSON per
+  backlog row** (28 total incl. the seed).
+
+## Generated task index
+
+All rows are materialized as schema-valid `tasks/<id>.json` (validated against `packages/schema` taskSchema;
+`filename == id`; no duplicates; no extra keys). The pre-existing seed is `cancer-dataset-datasheets-reviewer-001`.
+
+- **M0:** `cancer-dataset-datasheets-reviewer-001` (seed) · `…-template-003` · `…-gate-004` · `…-license-matrix-005` ·
+  `…-policy-006` · `…-croissant-007` · `…-provenance-008` · `…-outreach-009` · `…-pilot-010`
+- **M1:** `…-scanner-016` · `…-triage-011` · `…-doc-012` · `…-doc-013` · `…-partner-014`
+- **M2:** `…-tcga-017` · `…-cbio-018` · `…-effort-019` · `…-scale-020`
+- **M3:** `…-reuse-021` · `…-refresh-022` · `…-matrix-recheck-023`
+- **M4 (gated, `riskTier: high`):** `…-onco-reviewer-024` · `…-explainer-025`
+- **Backlog:** `…-cptac-026` · `…-seer-027` · `…-zenodo-028` · `…-i18n-029` · `…-dash-030`

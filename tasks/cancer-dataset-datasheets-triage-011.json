@@ -1,0 +1,30 @@
+{
+  "id": "cancer-dataset-datasheets-triage-011",
+  "title": "Triage 5 open-access candidates through both gates",
+  "project": "cancer-dataset-datasheets",
+  "type": "research",
+  "lane": "donated",
+  "priority": "high",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "data-governance",
+    "bioinformatics"
+  ],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "Applies the access-tier + identifiability + license gate to five open-access candidate datasets, producing a committed gate artifact for each. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Depends on the gate, matrix, policy, and outreach shortlist; COSMIC/OncoKB never pass.",
+  "objective": "Evaluate five open-access candidate datasets through both gates and commit a gate artifact (PASS/FLAG/EXCLUDE) for each, applying policy-006.",
+  "acceptanceCriteria": [
+    "Five open-access datasets evaluated with a committed gate artifact each (access-tier first, then identifiability, then license), applying policy-006.",
+    "Each PASS records open-tier confirmation, identifiability result, license id/URL/snapshot, and permitsDerivatives: true with cited evidence.",
+    "Any controlled/identifiable/NC-or-unclear dataset is EXCLUDED/FLAGGED with the concern surfaced; COSMIC/OncoKB never pass."
+  ],
+  "output": "/review/triage/ (5 committed gate artifacts)",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

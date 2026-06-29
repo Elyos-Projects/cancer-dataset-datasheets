@@ -1,0 +1,30 @@
+{
+  "id": "cancer-dataset-datasheets-cbio-018",
+  "title": "Datasheet for a cBioPortal study (per-study terms verified)",
+  "project": "cancer-dataset-datasheets",
+  "type": "data",
+  "lane": "donated",
+  "priority": "medium",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "Datasheet for a cBioPortal study, with per-study license terms verified because terms vary per study. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. TCGA-derived/open studies preferred; any non-open study is EXCLUDED; depends on the gate, Croissant generator, and scanner.",
+  "objective": "Produce a complete, gate-passed, provenance-backed datasheet for an open cBioPortal study and deliver it via PR to the study/metadata repo (or steward channel).",
+  "acceptanceCriteria": [
+    "Per-study license verified with cited clause (terms vary per study); TCGA-derived/open studies preferred; any non-open study EXCLUDED.",
+    "Datasheet + Croissant produced; provenance + required citation recorded; completeness >= 90/100.",
+    "Delivered via a GitHub PR to the study/metadata repo (acceptance = merge commit) or steward channel."
+  ],
+  "output": "/output/cbioportal-<study>/ + outcomes/cbioportal-<study>.json",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

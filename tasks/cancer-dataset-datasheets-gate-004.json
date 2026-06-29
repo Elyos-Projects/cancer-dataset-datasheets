@@ -1,0 +1,32 @@
+{
+  "id": "cancer-dataset-datasheets-gate-004",
+  "title": "Access-tier + identifiability + license gate checklist (blocking)",
+  "project": "cancer-dataset-datasheets",
+  "type": "design-spec",
+  "lane": "donated",
+  "priority": "high",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "data-governance",
+    "bioinformatics"
+  ],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "small",
+  "status": "open",
+  "context": "The non-skippable safety gate that every dataset must clear before documentation. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. The gate runs access-tier first, then identifiability, then license, and produces a committed PASS/FLAG/EXCLUDE artifact per dataset.",
+  "objective": "Specify the blocking access-tier + identifiability + license gate checklist, including the bounded inspection protocol and worked PASS and EXCLUDE examples.",
+  "acceptanceCriteria": [
+    "Access-tier check runs first: PASS only if open-access; any dbGaP/EGA/DACO/controlled/biobank path -> EXCLUDE. Authentication-required file = EXCLUDE signal.",
+    "Identifiability check: germline/individual-level scanner result, k>=5 quasi-identifier check, geo precision, linkage risk; any hit -> EXCLUDE/halt. We never de-identify ourselves.",
+    "License check: objective criterion -- PASS only if permitsDerivatives: true from a cited clause/URL; COSMIC/OncoKB/NC/custom -> FLAG/escalate per policy-006; unclear -> EXCLUDE.",
+    "Inspection follows the bounded protocol (open-tier only, row cap, ephemeral, no committed samples).",
+    "Produces a committed PASS/FLAG/EXCLUDE artifact per dataset recording which checks ran and what fired; ships a worked PASS example and a worked EXCLUDE example (a COSMIC entry)."
+  ],
+  "output": "/docs/gate-checklist.md plus /review/example-pass.md and /review/example-exclude-cosmic.md",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

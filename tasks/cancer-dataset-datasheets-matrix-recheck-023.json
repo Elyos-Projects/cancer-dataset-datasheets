@@ -1,0 +1,30 @@
+{
+  "id": "cancer-dataset-datasheets-matrix-recheck-023",
+  "title": "Re-verify the licensing matrix (licenses/policies change)",
+  "project": "cancer-dataset-datasheets",
+  "type": "maintenance",
+  "lane": "donated",
+  "priority": "medium",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "data-governance",
+    "bioinformatics"
+  ],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "small",
+  "status": "open",
+  "context": "Periodic re-verification of the cancer-source licensing & access matrix, because licenses and access policies change over time. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Depends on license-matrix-005; any newly-restrictive change must be propagated to the gate and policy.",
+  "objective": "Re-verify every source disposition in the licensing matrix against current cited clauses/URLs and record any changes with dates.",
+  "acceptanceCriteria": [
+    "Each source disposition re-checked against the current license URL + clause; the matrix version and re-verification date are bumped.",
+    "Any change in tier or derivative-permission is recorded and propagated to gate-004 / policy-006; newly-restrictive sources are flagged/excluded.",
+    "COSMIC/OncoKB and controlled tiers remain flagged/out-of-scope; no source is silently promoted to open without a cited clause."
+  ],
+  "output": "/docs/license-access-matrix.md (re-verified, version + date bumped)",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

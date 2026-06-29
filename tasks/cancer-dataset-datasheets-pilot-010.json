@@ -1,0 +1,32 @@
+{
+  "id": "cancer-dataset-datasheets-pilot-010",
+  "title": "End-to-end datasheet for one open-access pilot dataset",
+  "project": "cancer-dataset-datasheets",
+  "type": "data",
+  "lane": "donated",
+  "priority": "high",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "The first end-to-end proof: one unambiguously open-access dataset documented through the full pipeline (gate, datasheet, Croissant, provenance) and accepted via an informal channel or Zenodo DOI. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Depends on the template, gates, matrix, policy, tooling, outreach, and the reviewer role being filled.",
+  "objective": "Produce a complete, gate-passed, provenance-backed datasheet for one open-access pilot dataset and get it accepted (or submitted with the blocker surfaced).",
+  "acceptanceCriteria": [
+    "Pilot is unambiguously open-access + permissive (e.g. a DepMap CC-BY public release file or a TCGA open-tier expression matrix via GDC) and chosen for a realistic acceptance path (informal steward channel or self-serve Zenodo DOI).",
+    "Passed gate-004 (open tier confirmed; no individual-level/germline/re-identifiable content; license permits derivatives with cited clause) with the artifact committed.",
+    "Complete data dictionary, access-tier + identifiability assessment, Datasheet, and valid Croissant metadata produced; every assertion carries a provenance citation; completeness >= 90/100.",
+    "Provenance recorded (repository, accession, retrieval date, release/freeze, attribution, required dataset citation, GDS note; license snapshot = committed copy + SHA-256 + Wayback URL).",
+    "Documentation accepted via informal channel or Zenodo DOI with the Steward's acceptance artifact (outcomes/<dataset-id>.json) recorded -- or submitted with the blocker surfaced."
+  ],
+  "output": "/output/<pilot-dataset-id>/ (datasheet, gate artifact, Croissant, provenance) + outcomes/<pilot-dataset-id>.json",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

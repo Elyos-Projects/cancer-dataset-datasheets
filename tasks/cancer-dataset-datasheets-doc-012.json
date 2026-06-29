@@ -1,0 +1,31 @@
+{
+  "id": "cancer-dataset-datasheets-doc-012",
+  "title": "Datasheet for accepted dataset #2 (DepMap public release)",
+  "project": "cancer-dataset-datasheets",
+  "type": "data",
+  "lane": "donated",
+  "priority": "medium",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "Second end-to-end datasheet, for a DepMap public release file. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Depends on the pilot pipeline and the triage results; DepMap license is verified per-release.",
+  "objective": "Produce a complete, gate-passed, provenance-backed datasheet for a DepMap public-release dataset and get it accepted (or submitted with the blocker surfaced).",
+  "acceptanceCriteria": [
+    "Dataset is a DepMap public release confirmed open-access with its per-release license verified (permitsDerivatives: true, cited clause); passed gate-004 with the artifact committed.",
+    "Complete data dictionary, access-tier + identifiability assessment, Datasheet, and valid Croissant produced; every assertion carries a provenance citation; completeness >= 90/100.",
+    "Provenance + license snapshot recorded (committed copy + SHA-256 + Wayback URL), including the required DepMap citation and release/freeze.",
+    "Documentation accepted via the DepMap maintainer/forum channel with the acceptance artifact (outcomes/<dataset-id>.json) recorded -- or submitted with the blocker surfaced."
+  ],
+  "output": "/output/depmap-<release>/ + outcomes/depmap-<release>.json",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

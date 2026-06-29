@@ -1,0 +1,28 @@
+{
+  "id": "cancer-dataset-datasheets-refresh-022",
+  "title": "Staleness/version-drift refresh process (GDC/DepMap re-releases)",
+  "project": "cancer-dataset-datasheets",
+  "type": "maintenance",
+  "lane": "donated",
+  "priority": "low",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "low",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "small",
+  "status": "open",
+  "context": "Defines a process to detect when a documented dataset has drifted from its recorded release/freeze (GDC data releases, DepMap quarterly) and to re-open stale docs as maintenance tasks. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Depends on the provenance tool and tcga-017.",
+  "objective": "Document the staleness/version-drift refresh process that detects drift from the recorded release/freeze and flags schema drift.",
+  "acceptanceCriteria": [
+    "Process detects when a documented dataset has drifted from its recorded release/freeze (GDC data releases, DepMap quarterly); validation flags schema drift; stale docs become maintenance tasks."
+  ],
+  "output": "/docs/refresh-process.md",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "cancer-dataset-datasheets-partner-014",
+  "title": "Secure first confirmed contribution partner (steward/lab)",
+  "project": "cancer-dataset-datasheets",
+  "type": "research",
+  "lane": "donated",
+  "priority": "high",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "low",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "small",
+  "status": "open",
+  "context": "Converts an outreach thread into a named, confirmed contribution partner who will review and accept contributed documentation, which flips that partner's tasks to verifiedNeed:true. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Depends on outreach-009.",
+  "objective": "Secure and document the first confirmed contribution partner (steward/maintainer/lab) and the contribution mechanism, updating affected tasks to verifiedNeed:true.",
+  "acceptanceCriteria": [
+    "A named steward/maintainer/lab confirms they will review and accept contributed documentation.",
+    "Contribution mechanism documented (PR vs. submitter update vs. archive DOI vs. email).",
+    "Tasks for that partner updated to verifiedNeed: true with requestor set."
+  ],
+  "output": "/docs/confirmed-partner.md",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

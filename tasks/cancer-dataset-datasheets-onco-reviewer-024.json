@@ -1,0 +1,31 @@
+{
+  "id": "cancer-dataset-datasheets-onco-reviewer-024",
+  "title": "Secure oncologist + patient-advocate reviewer panel",
+  "project": "cancer-dataset-datasheets",
+  "type": "research",
+  "lane": "donated",
+  "priority": "high",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "data-governance",
+    "bioinformatics"
+  ],
+  "riskTier": "high",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "small",
+  "status": "open",
+  "context": "Patient-facing explainers are riskTier:high and gated: they cannot start until an oncologist + patient-advocate reviewer panel is secured and the \"not medical advice\" framing is ratified. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. Education only -- never advice; this task secures the blocking review panel.",
+  "objective": "Secure and document a named oncologist + patient-advocate reviewer panel and ratify the 'not medical advice' framing as the precondition for any patient-facing work.",
+  "acceptanceCriteria": [
+    "A named oncologist and a named patient-advocate reviewer are secured (or explicitly marked TO BE SECURED), with their qualifications recorded.",
+    "The panel's sign-off responsibility is documented: no patient-facing explainer ships without recorded oncologist + advocate sign-off (riskTier: high hard gate).",
+    "The 'not medical advice' framing/banner is ratified and recorded; education-only scope (no clinical/treatment/prognostic guidance) is stated.",
+    "PLAN.md Governance reflects the panel (or TO BE SECURED status) and the appointment is dated; no explainer task may start until filled."
+  ],
+  "output": "/docs/patient-facing-review-panel.md",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

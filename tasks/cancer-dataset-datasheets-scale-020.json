@@ -1,0 +1,29 @@
+{
+  "id": "cancer-dataset-datasheets-scale-020",
+  "title": "Datasheets for datasets #6-#8 (cover remaining target sources)",
+  "project": "cancer-dataset-datasheets",
+  "type": "data",
+  "lane": "donated",
+  "priority": "medium",
+  "domain": [
+    "cancer-research",
+    "open-science",
+    "bioinformatics",
+    "data-documentation"
+  ],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "large",
+  "status": "open",
+  "context": "Documents datasets #6-#8 so that at least one accepted datasheet exists for each of TCGA/GDC, GEO, cBioPortal, and DepMap across M0-M2. Binding cancer guardrails apply: open-access / aggregate / de-identified data only; controlled-access (dbGaP, EGA, ICGC DACO, individual-level biobanks) and any identifiable patient data are OUT OF SCOPE; COSMIC/OncoKB are non-commercial/custom (flag, never treat as open); no medical advice; provenance on every assertion. The specific datasets are selected at triage and not enumerated in the plan, so this stays a single representative task that fans out only on confirmed selection. Depends on tcga-017, cbio-018, doc-012, doc-013, partner-014.",
+  "objective": "Produce gate-passed, provenance-backed datasheets for datasets #6-#8 to complete source coverage across TCGA/GDC, GEO, cBioPortal, and DepMap, each accepted upstream with effort logged.",
+  "acceptanceCriteria": [
+    "Each dataset passes both gates with committed artifacts; collectively ensure >= 1 accepted datasheet exists for each of TCGA/GDC, GEO, cBioPortal, DepMap across M0-M2.",
+    "Each accepted upstream with acceptance artifact; per-dataset effort logged to show reduction vs. the M0/M1 baseline median."
+  ],
+  "output": "/output/ (datasheets #6-#8) + outcomes/<dataset-id>.json each",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}
