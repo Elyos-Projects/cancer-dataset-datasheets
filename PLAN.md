@@ -238,7 +238,7 @@ nobody owns the curated, verified bridge.** That bridge is this project.
 - **Machine-readable permissions via Croissant (push to 1.1 DUO/PROV-O)** — consent/access constraints as
   ontology terms, not prose; uniquely on-mission and future-proofed for agent (MCP) consumption.
 
-**Division of labor with the Elyos siblings** (see the reuse contract under Solution approach): three layers
+**Division of labor with the Hee-Lee Oss siblings** (see the reuse contract under Solution approach): three layers
 — **general toolkit** (`open-data-datasheets`, which owns the shared canonical model/Croissant
 validator/inspection protocol) → **cancer-wide verified datasheets + gate** (this project, the genomics
 *superset*) → **disease-specific discovery** (`ewing-open-data-catalog`, which *consumes/links* these
@@ -296,7 +296,7 @@ free-text `release` string — so a datasheet names "DepMap 24Q4 (DOI …)", nev
 **Hard invariant:** any record with `accessTier != open`, `identifiability.individualLevel == true`, or
 `identifiability.germlinePresent == true` is rejected by the gate and never produced.
 
-**Tech stack.** TypeScript, ESM, pnpm workspaces (Elyos conventions). Validators, scanner, and Croissant
+**Tech stack.** TypeScript, ESM, pnpm workspaces (Hee-Lee Oss conventions). Validators, scanner, and Croissant
 generator are small Node packages with minimal dependencies. Documentation authored in Markdown +
 JSON/JSON-LD. No runtime services; everything runs locally or in CI.
 
@@ -305,7 +305,7 @@ sibling `open-data-datasheets` (general/civic open data) **owns the shared toolk
 metadata model, the Croissant validator (+ golden fixtures), the bounded 1,000-row/5 MB inspection
 protocol, and the CC-BY-output/MIT-code split. cancer-dataset-datasheets **reuses those as a dependency and
 extends them**; it does **not** re-implement a parallel canonical model, Croissant validator, or inspection
-protocol (doing so would leave Elyos maintaining three drifting validators). What this project genuinely
+protocol (doing so would leave Hee-Lee Oss maintaining three drifting validators). What this project genuinely
 **adds on top** — its reason to be a superset — is the **access-tier + identifiability gate, the germline/
 identifiability scanner, the k≥5 check, the cancer-source license matrix (incl. ODbL/share-alike), the
 OncoTree/NCIt ontology layer, the upstream-version-DOI pinning, and the oncologist/advocate review track.**
@@ -597,7 +597,7 @@ becomes a task until it passes both gates — listing a dataset does not pre-app
   license identifiers (incl. **ODC-ODbL** for cBioPortal); ontologies **OncoTree (primary)**, NCIt + Disease
   Ontology (secondary crosswalks), EDAM. Versions recorded in `specVersions` and bumped only via a
   deliberate task.
-- **Sibling Elyos projects (reuse, not fork):** `open-data-datasheets` owns the shared canonical model /
+- **Sibling Hee-Lee Oss projects (reuse, not fork):** `open-data-datasheets` owns the shared canonical model /
   Croissant validator / inspection protocol (consumed as a dependency); `ewing-open-data-catalog` consumes
   and links the datasheets produced here. See the reuse contract under Solution approach.
 - **External sources/portals:** NCI **GDC** (TCGA open tier), **GEO**/NCBI, **cBioPortal** (GitHub),
@@ -607,7 +607,7 @@ becomes a task until it passes both gates — listing a dataset does not pre-app
   exclude); source citation/attribution guidelines (TCGA, DepMap).
 - **Datasets:** specific open-access cancer datasets — TO BE SELECTED via the matrix + gates; none assumed
   in scope yet.
-- **Elyos pieces:** Task JSON schema (`packages/schema`), donated-lane CLI workspace/PR flow
+- **Hee-Lee Oss pieces:** Task JSON schema (`packages/schema`), donated-lane CLI workspace/PR flow
   (`packages/cli`), good-deed definition + refusal guardrails. No funded-lane/runner dependency.
 
 ## Risks & mitigations
@@ -637,7 +637,7 @@ becomes a task until it passes both gates — listing a dataset does not pre-app
   authorization, that is itself an EXCLUDE signal.
 - **Secrets handling:** validators/scanner/generator require no credentials by default. Any portal token
   needed for a contribution is supplied by the human submitting and never written into logs, receipts,
-  or committed files (per Elyos rules).
+  or committed files (per Hee-Lee Oss rules).
 - **PII / identifiability:** the dominant concern is *upstream* identifiability in candidate datasets,
   handled by the mandatory access-tier + identifiability gate and the germline scanner. We never download,
   store, or process individual-level or germline data; we inspect open-tier schema/aggregate only enough
@@ -662,7 +662,7 @@ becomes a task until it passes both gates — listing a dataset does not pre-app
 
 Parallel and perpendicular spin-offs surfaced by the competitive analysis — **not committed scope**, recorded
 so the strategy is captured and the core stays focused. Each reuses (never re-implements) the verified core.
-- **Shared Elyos "verified-datasheet core"** — extract the canonical model + Croissant validator + bounded
+- **Shared Hee-Lee Oss "verified-datasheet core"** — extract the canonical model + Croissant validator + bounded
   inspection protocol into one package consumed by `open-data-datasheets`, `cancer-dataset-datasheets`, and
   `ewing-open-data-catalog` (kills the triple-validator drift; the structural realization of the reuse
   contract).
@@ -675,7 +675,7 @@ so the strategy is captured and the core stays focused. Each reuses (never re-im
   dataset X open, what's its license, what fields" with cited provenance (aligns with Croissant's own MCP
   direction). **Read-only, open-tier metadata only** — never controlled/identifiable data.
 - **"Gate-as-a-service"** — package the access-tier + identifiability + license gate as a reusable check
-  other Elyos health/genomics projects (and external curators) invoke before touching a dataset.
+  other Hee-Lee Oss health/genomics projects (and external curators) invoke before touching a dataset.
 - **Datasheet ↔ Dataset-Nutrition-Label adapter** — auto-render the M4 plain-language label from the
   canonical model, reusing the Data Nutrition Project's accessible framing for patients/advocates.
 
@@ -708,11 +708,11 @@ so the strategy is captured and the core stays focused. Each reuses (never re-im
 
 ## References
 
-- Elyos work rules — `C:\code\elyos\CLAUDE.md`
-- Good Deed Definition + risk tiers — `C:\code\elyos\docs\good-deed-definition.md`
-- Task JSON schema — `C:\code\elyos\packages\schema\src\schemas.ts`
-- Portfolio roadmap (Track 8 cancer guardrails) — `C:\code\elyos\planning\ROADMAP.md`
-- Sibling project (house style) — `C:\code\elyos\planning\projects\open-data-datasheets\PLAN.md`
+- Hee-Lee Oss work rules — `C:\code\hee-lee-oss\CLAUDE.md`
+- Good Deed Definition + risk tiers — `C:\code\hee-lee-oss\docs\good-deed-definition.md`
+- Task JSON schema — `C:\code\hee-lee-oss\packages\schema\src\schemas.ts`
+- Portfolio roadmap (Track 8 cancer guardrails) — `C:\code\hee-lee-oss\planning\ROADMAP.md`
+- Sibling project (house style) — `C:\code\hee-lee-oss\planning\projects\open-data-datasheets\PLAN.md`
 - Datasheets for Datasets — Gebru et al. (2018/2021) — https://arxiv.org/abs/1803.09010
 - Croissant ML metadata format specification (MLCommons) — **v1.1 (DUO/PROV-O + MCP)**, v1.0 prior —
   https://mlcommons.org/2026/02/croissant-1-1-standard/ · https://mlcommons.org/2025/10/croissant-mcp/
@@ -811,7 +811,7 @@ PLAN (and the companion TASKS.md). Each lists what changed and where.
   pursue the optional high-risk M4 patient-facing track. Listed in Open questions.
 
 Sign-off: **Draft approved for circulation** (senior-staff-engineer + TPM drafting review). Not yet
-ratified by the Elyos board/community or by the (still-to-be-named) credentialed reviewers.
+ratified by the Hee-Lee Oss board/community or by the (still-to-be-named) credentialed reviewers.
 
 ---
 

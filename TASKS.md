@@ -8,9 +8,9 @@
 > advice (patient-facing = `riskTier: high`, oncologist + advocate reviewed, "not medical advice" banner);
 > provenance on every assertion. See `PLAN.md` → *Data, licensing & compliance*.
 
-## How these tasks map to Elyos
+## How these tasks map to Hee-Lee Oss
 
-Each task becomes an Elyos **Task JSON** validated against `packages/schema/src/schemas.ts`:
+Each task becomes a Hee-Lee Oss **Task JSON** validated against `packages/schema/src/schemas.ts`:
 
 - `id` — stable slug ID from the tables (e.g. `cancer-dataset-datasheets-template-003`).
 - `title` — the table's Title.
@@ -288,9 +288,9 @@ explainers shipped without sign-off.
     "It is explicitly recorded that no dataset passes the gate and all tasks stay verifiedNeed:false until this role is filled."
   ],
   "resources": [
-    "C:\\Users\\jason\\AppData\\Local\\Temp\\claude\\C--code-elyos\\5eca0d44-6b8b-4c30-9696-37a524cb249a\\scratchpad\\plans\\cancer-dataset-datasheets\\PLAN.md",
-    "C:\\code\\elyos\\docs\\good-deed-definition.md",
-    "C:\\code\\elyos\\planning\\ROADMAP.md",
+    "C:\\Users\\jason\\AppData\\Local\\Temp\\claude\\C--code-hee-lee-oss\\5eca0d44-6b8b-4c30-9696-37a524cb249a\\scratchpad\\plans\\cancer-dataset-datasheets\\PLAN.md",
+    "C:\\code\\hee-lee-oss\\docs\\good-deed-definition.md",
+    "C:\\code\\hee-lee-oss\\planning\\ROADMAP.md",
     "NIH Genomic Data Sharing (GDS) policy",
     "NCI Genomic Data Commons (GDC) data access policies"
   ],
